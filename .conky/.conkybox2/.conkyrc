@@ -1,0 +1,69 @@
+background no
+use_xft yes
+font Dejavu Sans:size=7
+xftalpha 0
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent no
+own_window_type desktop
+own_window_argb_visual yes
+own_window_argb_value 120
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 150 150
+maximum_width 150
+draw_shades no
+draw_outline yes
+draw_borders no
+draw_graph_borders no
+default_color 999999
+default_shade_color black
+default_outline_color black
+alignment top_right
+gap_x 4
+gap_y 154
+no_buffers yes
+cpu_avg_samples 2
+text_buffer_size 1024
+override_utf8_locale no
+uppercase no
+
+
+##############################################
+# Output
+##############################################
+TEXT
+S Y S T E M I N F O
+----------------------------------------------------------
+uptime$alignr$uptime
+kernel$alignr${kernel}
+core temp ${alignr}${hwmon tempf 1}F
+load$alignr ${loadavg 1} ${loadavg 2} ${loadavg 3}
+
+
+C P U$alignr ${cpu cpu0}%
+${cpugraph cpu0}
+process$alignr cpu% mem%
+${top name 1}$alignr${top cpu 1} ${top mem 1}
+${top name 2}$alignr${top cpu 2} ${top mem 2}
+${top name 3}$alignr${top cpu 3} ${top mem 3}
+
+
+R A M$alignr${mem mem}/4GiB - $memperc%
+${memgraph}
+process $alignr cpu% mem%
+${top_mem name 1}$alignr${top_mem cpu 1} ${top_mem mem 1}
+${top_mem name 2}$alignr${top_mem cpu 2} ${top_mem mem 2}
+${top_mem name 3}$alignr${top_mem cpu 3} ${top_mem mem 3}
+
+
+S S D${alignr}$diskio I/O
+${diskiograph /dev/sda3}
+
+
+N E T W O R K${alignr}${downspeed wlan0} I/O
+${downspeedgraph wlan0}
+in/out ${alignr}${totaldown wlan0}/${totalup wlan0}
+lan ip ${alignr}${addr wlan0}
+net ip ${alignr}${execi 3600 wget -O - http://ip.tupeux.com | tail}
