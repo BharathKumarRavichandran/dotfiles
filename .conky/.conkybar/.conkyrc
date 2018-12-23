@@ -8,16 +8,16 @@ total_run_times 0
 background yes
 
 own_window yes
-own_window_type normal
+own_window_type panel
 own_window_transparent no
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 own_window_hints undecorated,above,skip_taskbar,skip_pager
+own_window_override yes
 own_window_colour 262729
 own_window_argb_visual no
 own_window_argb_value 102
 
 double_buffer yes
-#minimum_size 250 5
+minimum_size 2100 10
 #maximum_width 500
 draw_shades no
 draw_outline no
@@ -26,9 +26,9 @@ draw_graph_borders no
 default_color white
 default_shade_color red
 default_outline_color green
-alignment bottom_middle
-gap_x 30
-gap_y 0
+alignment top_middle
+gap_x -95
+gap_y 31 # for bar in bottom value - 70, top - 31
 no_buffers yes
 uppercase no
 draw_shades no 
@@ -36,7 +36,6 @@ cpu_avg_samples 2
 net_avg_samples 1
 override_utf8_locale yes
 use_spacer none
-minimum_size 2100 10
 
 
 #------------------------------------ Colores
