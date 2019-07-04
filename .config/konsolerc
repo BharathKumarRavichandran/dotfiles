@@ -1,0 +1,14 @@
+[Desktop Entry]
+DefaultProfile=teslash21.profile
+
+[Favorite Profiles]
+Favorites=
+
+[MainWindow]
+Height 1080=1013
+State=AAAA/wAAAAD9AAAAAAAAB4AAAAPzAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+Width 1920=1920
+
+[TabBar]
+NewTabBehavior=PutNewTabAfterCurrentTab
