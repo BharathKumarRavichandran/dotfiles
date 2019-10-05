@@ -1,11 +1,17 @@
 #!/bin/sh
 
-. ./.env
-BASE_DIR=$DF_DIR_PATH
+# Getting the currently executing script directory
+CURR_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Sourcing .env file
+. $CURR_DIR/.env
+
+# Setting REPO LOCAL BASE DIR
+BASE_DIR=$DF_LOCAL_REPO_PATH
 
 # Sync dotfiles
 echo "Syncing dotfiles..."
-./sync.dotfiles.sh
+$CURR_DIR/sync.dotfiles.sh
 
 # Go to BASE_DIR
 cd BASE_DIR

@@ -1,7 +1,12 @@
 #!/bin/sh
 
+# Getting the currently executing script directory
+CURR_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Sourcing .env file and get DF_LOCAL_REPO_PATH
+. $CURR_DIR/.env
+
 # Setup local with home
-DIR_PATH="$HOME/CS/Github/dotfiles"
 
 # Prompt confirmation
 echo -n "Are you sure you want to setup dotfiles configuration (y/n)? "
@@ -21,9 +26,9 @@ then
     echo "Copying dotfiles..."
 
     # Sync scripts excluding sync script
-    cp -r "$DIR_PATH/bin/scripts/" "$HOME/bin/"
+    cp -r "$DF_LOCAL_REPO_PATH/bin/scripts/" "$HOME/bin/"
 
-    sh "$DIR_PATH/bin/scripts/dotfiles/reverse_sync.dotfiles.sh"
+    sh "$DF_LOCAL_REPO_PATH/bin/scripts/dotfiles/reverse_sync.dotfiles.sh"
 
     echo "Setup done"
     
