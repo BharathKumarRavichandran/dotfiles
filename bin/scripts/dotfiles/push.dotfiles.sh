@@ -1,6 +1,7 @@
 #!/bin/sh
 
-BASE_DIR="$HOME/CS/Github/dotfiles"
+. ./.env
+BASE_DIR=$DF_DIR_PATH
 
 # Sync dotfiles
 echo "Syncing dotfiles..."
