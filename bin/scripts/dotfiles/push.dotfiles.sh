@@ -14,7 +14,7 @@ echo "Syncing dotfiles..."
 $CURR_DIR/sync.dotfiles.sh
 
 # Go to BASE_DIR
-cd BASE_DIR
+cd $BASE_DIR
 
 # Stage all files
 echo "Staging all changes..."
