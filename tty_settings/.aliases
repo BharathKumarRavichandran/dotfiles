@@ -1,5 +1,6 @@
 # General
 alias brightness='xrandr --output eDP-1-1 --brightness'
+alias minbrightness='sudo su -c "echo 1 >/sys/class/backlight/intel_backlight/brightness"'
 alias die="figlet 'Goodbye!' && poweroff"
 alias killprocess='fuser -k 3000/tcp'
 alias trx="tar xvf"
@@ -7,6 +8,7 @@ alias fucking="sudo"
 alias vi="vim"
 alias trx="tar xvf"
 alias vscode="/bin/code --force-device-scale-factor=1.5"
+alias c="code ."
 
 
 # Multiple directory listing aliases
@@ -49,6 +51,10 @@ alias pushdf='$HOME/CS/Github/dotfiles/bin/scripts/dotfiles/push.dotfiles.sh'
 alias ghp='cd $HOME/CS/Github'
 alias web='cd /var/www/html'
 
+#ssh
+alias sshdelta='ssh bharath@delta.nitt.edu'
+alias sshcake='ssh bharath@siliconcupcake.wtf'
+alias sshjspf='ssh bharath@139.59.34.66'
 
 # Project locations
 alias fapi="cd $HOME/bin/FestAPI"
