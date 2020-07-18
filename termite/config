@@ -1,0 +1,83 @@
+[options]
+allow_bold = true
+#audible_bell = false
+#bold_is_bright = true
+#cell_height_scale = 1.0
+#cell_width_scale = 1.0
+clickable_url = true
+dynamic_title = true
+#font = Iosevka Term Compressed 11
+font = Fira Code 11
+#fullscreen = true
+#icon_name = terminal
+#mouse_autohide = false
+#scroll_on_output = false
+#scroll_on_keystroke = true
+# Length of the scrollback buffer, 0 disabled the scrollback buffer
+# and setting it to a negative value means "infinite scrollback"
+scrollback_lines = 10000
+#search_wrap = true
+#urgent_on_bell = true
+#hyperlinks = false
+
+# $BROWSER is used by default if set, with xdg-open as a fallback
+browser = google-chrome-stable
+
+# "system", "on" or "off"
+cursor_blink = system
+
+# "block", "underline" or "ibeam"
+cursor_shape = block
+
+# Hide links that are no longer valid in url select overlay mode
+#filter_unmatched_urls = true
+
+# Emit escape sequences for extra modified keys
+#modify_other_keys = false
+
+# set size hints for the window
+#size_hints = false
+
+# "off", "left" or "right"
+#scrollbar = off
+
+
+# ====================================
+[colors]
+
+# http://dotfiles.org/~jbromley/.Xresources
+#background=#000010
+background = rgba(0, 0, 16, 0.85)
+foreground=#ffffff
+cursor=#FF00FF
+
+color0=#000000
+color1=#9e1828
+color2=#aece92
+color3=#968a38
+color4=#414171
+color5=#963c59
+color6=#418179
+color7=#bebebe
+color8=#666666
+color9=#cf6171
+color10=#c5f779
+color11=#fff796
+color12=#4186be
+color13=#cf9ebe
+color14=#71bebe
+color15=#ffffff
+
+
+[hints]
+#font = Monospace 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#active_foreground = #e68080
+#active_background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=dosini cms=#%s
