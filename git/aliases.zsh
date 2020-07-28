@@ -4,7 +4,7 @@ alias gcl="git clone"
 alias gclr="git clone --recursive"
 alias gcld="git clone --depth 1"
 
-alias gst="git status"
+alias gss="git status"
 alias gdiff="git diff"
 alias gdiffs="git diff --staged"
 

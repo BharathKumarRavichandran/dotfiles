@@ -57,3 +57,8 @@ unset config_files
 
 ######################### END SOURCE ############################
 
+######################## CUSTOM STUFF ###########################
+if command -v cowsay &> /dev/null
+then
+  cowsay "Hello Bharath!"
+fi
