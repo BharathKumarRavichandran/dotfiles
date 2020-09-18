@@ -194,10 +194,10 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
-assign [class="Pcmanfm"] $ws5
-assign [class="Thunar"] $ws5
-assign [class="Vlc"] $ws6
-assign [class="Spotify"] $ws8
+assign [class="(?i)Pcmanfm"] $ws5
+assign [class="(?i)Thunar"] $ws5
+assign [class="(?i)Vlc"] $ws6
+assign [class="(?i)Spotify"] $ws8
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1

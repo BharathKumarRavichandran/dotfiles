@@ -1,3 +1,7 @@
+" Bharath Kumar Ravichandran's Vim Configuration
+
+autocmd VimEnter * echo "Welcome, Bharath!"
+
 " vim-bootstrap 
 
 "*****************************************************************************
