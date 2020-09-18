@@ -9,7 +9,6 @@ alias trx="tar xvf"
 alias fucking="sudo"
 alias trx="tar xvf"
 alias vi="vim"
-alias c="code ."
 alias dirdu="du -h . --max-depth=1"
 
 # Multiple directory listing aliases
@@ -59,6 +58,12 @@ alias pf="pip freeze"
 alias pfr="pip freeze >! requirements.txt"
 alias pit="pip install --editable ."
 alias srcenv="source env/bin/activate"
+alias srcvenv="source venv/bin/activate"
 alias py="python"
 alias py3="python3"
 alias pym="python3 manage.py"
+
+# Applications
+alias c="code ."
+alias postman="postman </dev/null >/dev/null 2>&1 & disown"
+alias robo3t="/opt/robo3t-1.3.1-linux-x86_64-7419c406/bin/robo3t </dev/null >/dev/null 2>&1 & disown"
