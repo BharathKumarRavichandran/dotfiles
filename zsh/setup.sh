@@ -2,9 +2,6 @@
 
 echo "Configuring zsh configurations..."
 
-# Switch to zsh
-zsh
-
 # Clone prezto repository
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
