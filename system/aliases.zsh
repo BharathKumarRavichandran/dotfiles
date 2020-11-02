@@ -10,6 +10,7 @@ alias fucking="sudo"
 alias trx="tar xvf"
 alias vi="vim"
 alias dirdu="du -h . --max-depth=1"
+alias ports="sudo netstat -tulpn | grep LISTEN"
 
 # Multiple directory listing aliases
 alias ls='ls --color=always' # add colors and file type extensions
