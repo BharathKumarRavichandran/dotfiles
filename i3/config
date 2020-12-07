@@ -431,3 +431,8 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+# Display monitor workspace config
+bindsym $mod+Shift+lesser move workspace to output left
+bindsym $mod+Shift+greater move workspace to output right
+workspace 6 output HDMI1 HDMI2 VGA eDP1

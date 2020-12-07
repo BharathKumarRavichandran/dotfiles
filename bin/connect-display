@@ -1,0 +1,38 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: connect-display DISPLAY POSITION[=left|right]"
+}
+
+help() {
+    usage
+    echo "Connect DISPLAY with POSITION"
+
+    echo -e "\nExample:"
+    echo "'connect-display HDMI1 right'"
+    echo "The above command connects HDMI to the right of embedded display."
+    exit 1
+}
+
+
+missing_operands() {
+    echo "connect-display: Missing operands"
+    echo "Try 'connect-display --help' for more information."
+    exit 1
+}
+
+
+if [ $# -eq 1 ] ; then
+    case $1 in
+        -h|--help) help; shift ;;
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
+    esac
+elif [ $# -eq 2 ] ; then
+    display=`echo $1 | awk '{print toupper($0)}'`
+    pos=$2
+else
+    missing_operands
+fi
+
+echo "Connecting $display to the $pos of Embedded Display..."
+xrandr --output $display --auto --$pos-of eDP1 && echo "Connection success!"
