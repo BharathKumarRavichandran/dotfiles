@@ -1,0 +1,45 @@
+#!/bin/sh
+
+
+usage() {
+    echo "Usage: mv-wp-to-display WORKSPACE DISPLAY"
+}
+
+help() {
+    usage
+    echo "Move workspace to specified display."
+
+    echo -e "\nExample:"
+    echo "'mv-wp-to-display 6 HDMI1'"
+    echo "The above command moves workspace 6 to HDMI1"
+    exit 1
+}
+
+
+missing_operands() {
+    echo "mv-wp-to-display: Missing operands"
+    echo "Try 'mv-wp-to-display --help' for more information."
+    exit 1
+}
+
+
+if [ $# -eq 1 ] ; then
+    case $1 in
+        -h|--help) help; shift ;;
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
+    esac
+elif [ $# -eq 2 ] ; then
+    wp=$1
+    display=$2
+else
+    missing_operands
+fi
+
+echo "Moving workspace $wp to $display"
+if xrandr | grep -q "$display"
+then
+    i3-msg "workspace $wp, move workspace to output $display"
+    echo "Successfully moved!"
+else
+    echo "$display display does not exists!"
+fi
