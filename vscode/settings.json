@@ -1,6 +1,12 @@
 {
-    "workbench.colorTheme": "Community Material Theme Ocean High Contrast",
-    "terminal.external.linuxExec": "termite",
-    "workbench.iconTheme": "eq-material-theme-icons-ocean",
-    "vim.useCtrlKeys": false
+    "workbench.colorTheme": "Material Theme Ocean High Contrast",
+    "terminal.external.linuxExec": "zsh",
+    "workbench.iconTheme": "material-icon-theme",
+    "vim.useCtrlKeys": false,
+    "editor.fontSize": 16,
+    "debug.console.fontSize": 16,
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontFamily": "Iosevka",
+    "markdown.preview.fontSize": 16,
+    "mssql.resultsFontSize": 16,
 }

@@ -1,12 +1,12 @@
 #!/bin/sh
 
 usage() {
-    echo "Usage: connect-display DISPLAY POSITION[=left|right]"
+    echo "Usage: connect-display <DISPLAY> <POSITION> [=left|right]"
 }
 
 help() {
     usage
-    echo "Connect DISPLAY with POSITION"
+    echo "Connect DISPLAY to the default monitor."
 
     echo -e "\nExample:"
     echo "'connect-display HDMI1 right'"

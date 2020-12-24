@@ -53,6 +53,7 @@ alias pytohn="python"
 alias doc="cd $HOME/Documents"
 alias down="cd $HOME/Downloads"
 alias web="cd /var/www/html"
+alias web2="cd /srv/http"
 alias play="cd $HOME/playground"
 
 # PHP and Laravel
@@ -75,5 +76,7 @@ alias pym="python3 manage.py"
 
 # Applications
 alias c="code ."
+alias coalad="docker run -ti -v $(pwd):/app --workdir=/app coala/base coala"
 alias postman="postman </dev/null >/dev/null 2>&1 & disown"
-alias robo3t="/opt/robo3t-1.3.1-linux-x86_64-7419c406/bin/robo3t </dev/null >/dev/null 2>&1 & disown"
+alias robo3t="robo3t </dev/null >/dev/null 2>&1 & disown"
+alias idea="idea </dev/null >/dev/null 2>&1 & disown"
