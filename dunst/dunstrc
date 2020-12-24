@@ -1,6 +1,6 @@
 [colors]
 	background = "#0f1013"
-	foreground = "#eac094"
+	# foreground = "#eac094"
     info = "#33b5e5"
     success = "#00C851"
     warning = "#ffbb33"
@@ -8,7 +8,7 @@
 
 [global]
     frame_width = 2
-    frame_color = "#a64044"
+    frame_color = "#000000"
     
     font = Iosevka 13
     
@@ -92,7 +92,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing windowmanager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 30
+    transparency = 5
     
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -212,19 +212,22 @@
 
 [urgency_low]
     background = colors.background
-    foreground = colors.foreground
-    timeout = 10
+    foreground = "#aed9e0"
+    frame_color = "#aed9e0"
+
+    timeout = 5
 
 [urgency_normal]
     background = colors.background
-    foreground = colors.foreground
-    timeout = 10
+    foreground = "#f4a261"
+    frame_color = "#f4a261"
+    timeout = 8
 
 [urgency_critical]
     background = colors.background
-    foreground = colors.foreground
-    frame_color = "#8C3D45"
-    timeout = 10
+    foreground = "#FF221F"
+    frame_color = "#FF221F"
+    timeout = 12
 
 [experimental]
     per_monitor_dpi = false
@@ -332,4 +335,12 @@
 #     background = "#30AB70"
 #     foreground = "#F67245"
 #
+[changeVolume]
+    appname = changeVolume
+    stack_duplicates = false
+[Spotify]
+    appname = Spotify
+    format = "<b>Now Playing</b>\n%s\n%b"
+    foreground = "#1DB954"
+    frame_color = "1DB954"
 # vim: ft=cfg

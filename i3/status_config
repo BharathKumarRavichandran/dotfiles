@@ -27,7 +27,7 @@ order += "memory"
 order += "tztime local"
 
 cpu_usage {
-        format = " CPU : %usage"
+        format = " CPU %usage"
 }
 
 load {
@@ -46,13 +46,13 @@ disk "/home" {
 
 ethernet _first_ {
 # if you use %speed, i3status requires root privileges
-        format_up = " Lan: %ip %speed "
+        format_up = " LAN %ip %speed "
         format_down = ""
 }
 
 wireless _first_ {
-	format_up = " WiFi: %quality | %ip "
-	format_down = " no wifi "
+	format_up = " WiFi %quality | %ip "
+	format_down = " No WiFi "
 }
 
 battery all {
@@ -82,5 +82,5 @@ memory {
 
 tztime local {
         # format = "%Y-%m-%d %H:%M:%S"
-        format = "%a %d-%m %H:%M "
+        format = "%a %d-%m-%y %H:%M"
 }

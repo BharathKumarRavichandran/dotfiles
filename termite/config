@@ -1,13 +1,14 @@
 [options]
 allow_bold = true
-#audible_bell = false
-#bold_is_bright = true
-#cell_height_scale = 1.0
-#cell_width_scale = 1.0
+audible_bell = false
+bold_is_bright = true
+cell_height_scale = 1.0
+cell_width_scale = 1.0
 clickable_url = true
 dynamic_title = true
-#font = Iosevka Term Compressed 11
-font = Fira Code 11
+#font = Fira Code 11
+#font = Source Code Pro 12
+font = Iosevka 13
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -47,7 +48,7 @@ cursor_shape = block
 
 # http://dotfiles.org/~jbromley/.Xresources
 #background=#000010
-background = rgba(0, 0, 16, 0.85)
+background = rgba(5, 5, 5, 0.80)
 foreground=#ffffff
 cursor=#FF00FF
 
@@ -70,12 +71,12 @@ color15=#ffffff
 
 
 [hints]
-#font = Monospace 12
+font = Monospace 12
 #foreground = #dcdccc
 #background = #3f3f3f
 #active_foreground = #e68080
 #active_background = #3f3f3f
-#padding = 2
+padding = 2
 #border = #3f3f3f
 #border_width = 0.5
 #roundness = 2.0

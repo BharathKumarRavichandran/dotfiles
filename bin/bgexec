@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Opening application: $1 ..."
+echo "Opening $1..."
 if command -v $1 &> /dev/null
 then
     $1 $2 </dev/null >/dev/null 2>&1 & disown

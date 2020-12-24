@@ -1,0 +1,90 @@
+#!/bin/sh
+
+msgId="991049"
+
+SINK="`pactl info | grep -P '^Default Sink: ' | sed 's/[^:]\+:\s\+//'`"
+[[ -z "$SINK" ]] && exit 1
+
+if [[ "$SINK" =~ DragonFly ]]; then
+    INCR='24'
+    MIN_VOLUME=65050
+    MAX_VOLUME=65146
+else
+    INCR='5%'
+    MIN_VOLUME=0
+    MAX_VOLUME=65536
+fi
+
+function volume() {
+    VOLUME="`pacmd dump | grep -P '^set-sink-volume.*\s+0x[1-9a-f][0-9a-f]*$'`"
+    echo "$VOLUME" | grep -qF "$SINK"
+    if [[ $? -eq 0 ]]; then
+        VOLUME="`echo "$VOLUME" | grep -oP '0x[1-9a-f][0-9a-f]*$'`"
+        printf "%d\n" "$VOLUME"
+    else
+        echo 0
+    fi
+    unset VOLUME
+}
+
+function volume_perc() {
+	echo "$(pacmd list-sinks | grep "volume" | head -n1 | cut -d: -f3 | cut -d% -f1 | tr -d "[:space:]" | cut -d "/" -f2)"
+}
+
+#volume
+
+if [[ -z "$1" ]]; then
+    echo "Usage: $0 <up | down | mute | unmute | toggle>"
+    exit 1
+fi
+
+case "$1" in
+    up)
+        pactl -- set-sink-volume "$SINK" "+$INCR"
+        VOLUME="`volume`"
+        if [[ $VOLUME -gt $MAX_VOLUME ]]; then
+            pactl -- set-sink-volume "$SINK" "$MAX_VOLUME"
+        fi
+    ;;
+    down)
+        pactl -- set-sink-volume "$SINK" "-$INCR"
+        VOLUME="`volume`"
+        if [[ $VOLUME -lt $MIN_VOLUME ]]; then
+            pactl -- set-sink-volume "$SINK" "$MIN_VOLUME"
+        fi
+    ;;
+    mute)
+        pactl -- set-sink-mute "$SINK" 1
+    ;;
+    unmute)
+        pactl -- set-sink-mute "$SINK" 0
+    ;;
+    toggle)
+        MUTED="`pacmd dump | grep -P '^set-sink-mute.*\s+yes$'`"
+        echo "$MUTED" | grep -qF "$SINK"
+        if [[ $? -eq 0 ]]; then
+            pactl -- set-sink-mute "$SINK" 0
+        else
+            pactl -- set-sink-mute "$SINK" 1
+        fi
+    ;;
+    *)
+        echo "Unknown command: $1"
+        exit 1
+    ;;
+esac
+
+#volume
+
+# Send a notification
+MUTED="`pacmd dump | grep -P '^set-sink-mute.*\s+yes$'`"
+echo "$MUTED" | grep -qF "$SINK"
+if [[ $? -eq 0 ]]; then
+    dunstify -a "changeVolume" -u low -i audio-volume-muted -r "$msgId" "Volume muted"
+
+else
+    notification=$(echo "Volume: $(volume_perc)%")
+    dunstify -a "changeVolume" -u low -i audio-volume-high -r "$msgId" "$notification"
+    # Play an audio
+    canberra-gtk-play -i audio-volume-change -d "changeVolume"
+fi
