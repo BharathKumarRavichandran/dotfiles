@@ -18,9 +18,11 @@ bashate               0.5.1
 bauh                  0.9.8
 bcrypt                3.2.0
 Beaker                1.11.0
+beautifulsoup4        4.9.3
 binwalk               2.2.0
 bitstring             3.1.7
 brotlipy              0.7.0
+bs4                   0.0.1
 btrfsutil             5.9
 CacheControl          0.12.6
 cached-property       1.4.3
@@ -39,6 +41,7 @@ contextlib2           0.6.0.post1
 cppclean              0.12
 cpplint               1.5.4
 cryptography          3.2.1
+dbus-python           1.2.16
 defusedxml            0.6.0
 deluge                2.0.4.dev38
 dennis                0.9
@@ -124,6 +127,7 @@ python-xapp           2.0.2
 python-xlib           0.28
 pytoml                0.1.21
 pytz                  2020.4
+pywal                 3.3.0
 pyxdg                 0.26
 PyYAML                3.13
 ranger-fm             1.9.3
@@ -141,6 +145,7 @@ setuptools            50.3.2
 singledispatch        3.4.0.3
 six                   1.15.0
 smmap                 3.0.4
+soupsieve             2.1
 speedtest-cli         2.1.2
 stevedore             3.3.0
 tabulate              0.8.7

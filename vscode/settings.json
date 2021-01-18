@@ -9,4 +9,6 @@
     "terminal.integrated.fontFamily": "Iosevka",
     "markdown.preview.fontSize": 16,
     "mssql.resultsFontSize": 16,
+    "terminal.integrated.shell.linux": "/bin/zsh",
+    "glassit.alpha": 240,
 }

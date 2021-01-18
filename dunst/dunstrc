@@ -212,21 +212,20 @@
 
 [urgency_low]
     background = colors.background
-    foreground = "#aed9e0"
-    frame_color = "#aed9e0"
-
+    foreground = "#edf5f0"
+    frame_color = "#e6ede8"
     timeout = 5
 
 [urgency_normal]
     background = colors.background
-    foreground = "#f4a261"
-    frame_color = "#f4a261"
+    foreground = "#1DD572"
+    frame_color = "#1DD572"
     timeout = 8
 
 [urgency_critical]
     background = colors.background
-    foreground = "#FF221F"
-    frame_color = "#FF221F"
+    foreground = "#ee2e24"
+    frame_color = "#ee2e24"
     timeout = 12
 
 [experimental]
@@ -342,5 +341,5 @@
     appname = Spotify
     format = "<b>Now Playing</b>\n%s\n%b"
     foreground = "#1DB954"
-    frame_color = "1DB954"
+#    frame_color = "#1DB954"
 # vim: ft=cfg

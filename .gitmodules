@@ -1,0 +1,3 @@
+[submodule "Spicetify Themes"]
+	path = spicetify/Themes
+	url = https://github.com/morpheusthewhite/spicetify-themes.git

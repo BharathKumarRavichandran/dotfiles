@@ -77,6 +77,3 @@ alias pym="python3 manage.py"
 # Applications
 alias c="code ."
 alias coalad="docker run -ti -v $(pwd):/app --workdir=/app coala/base coala"
-alias postman="postman </dev/null >/dev/null 2>&1 & disown"
-alias robo3t="robo3t </dev/null >/dev/null 2>&1 & disown"
-alias idea="idea </dev/null >/dev/null 2>&1 & disown"

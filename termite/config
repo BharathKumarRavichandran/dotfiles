@@ -45,33 +45,54 @@ cursor_shape = block
 
 # ====================================
 [colors]
+background = rgba(5, 5, 5, 0.75)
 
-# http://dotfiles.org/~jbromley/.Xresources
-#background=#000010
-background = rgba(5, 5, 5, 0.80)
-foreground=#ffffff
-cursor=#FF00FF
+# special
+foreground      = #d9d8d8
+foreground_bold = #d9d8d8
+cursor          = #d9d8d8
 
-color0=#000000
-color1=#9e1828
-color2=#aece92
-color3=#968a38
-color4=#414171
-color5=#963c59
-color6=#418179
-color7=#bebebe
-color8=#666666
-color9=#cf6171
-color10=#c5f779
-color11=#fff796
-color12=#4186be
-color13=#cf9ebe
-color14=#71bebe
-color15=#ffffff
+# black
+color0  = #231f20
+color8  = #737171
 
+# red
+color1  = #ee2e24
+color9  = #ee2e24
+
+# green
+color2  = #1dd572
+color10 = #1dd572
+
+# yellow
+color3  = #EBC411
+color11 = #EBC411
+
+# blue
+color4  = #009DDC
+color12 = #009DDC
+
+# magenta
+color5  = #98005d
+color13 = #98005d
+
+# cyan
+color6  = #85cebc
+color14 = #85cebc
+
+# white
+color7  = #d9d8d8
+color15 = #ffffff
+
+color16=#f386a1
+color17=#b06110
+color18=#1c3f95
+color19=#5a5758
+color20=#959ca1
+color21=#e7e7e8
 
 [hints]
-font = Monospace 12
+font = Iosevka 12
 #foreground = #dcdccc
 #background = #3f3f3f
 #active_foreground = #e68080
