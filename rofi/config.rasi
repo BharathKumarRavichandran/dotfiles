@@ -1,0 +1,19 @@
+configuration {
+	modi: "combi,drun,run,window,ssh";
+	width: 40;
+	lines: 15;
+	columns: 2;
+	font: "Iosevka 13";
+	bw: 4;
+	padding: 40;
+	show-icons: true;
+	sidebar-mode: true;
+	eh: 1;
+	auto-select: false;
+	combi-modi: "window,drun";
+	line-margin: 10;
+	separator-style: "solid";
+	hide-scrollbar: true;
+	fake-transparency: true;
+	theme: "~/.dotfiles/rofi/themes/oxide-custom.rasi";
+}

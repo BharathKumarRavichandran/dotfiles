@@ -31,6 +31,8 @@ The following instructions are slightly arch specific, but you can still reuse a
 	* Install `IntelliJ Idea`
 	* Install `Postman`
 	* Install `Robo3T`
-* Install `Spotify`
+* Install `pcmanfm` and `ranger`
+* Install `Spotify` and `Spicetify`
+	* Setup [Spicetify](spicetify/)
 * Install other [required packages](packages/).
 * Setup default apps in `~/.config/mimeapps.list` (the desktop files are in /usr/share/applications).
