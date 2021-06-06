@@ -11,4 +11,9 @@
     "mssql.resultsFontSize": 16,
     "terminal.integrated.shell.linux": "/bin/zsh",
     "glassit.alpha": 240,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/node_modules/**": true
+    }
+}
 }
