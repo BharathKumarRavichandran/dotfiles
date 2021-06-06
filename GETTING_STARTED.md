@@ -2,7 +2,7 @@
 The following instructions are slightly arch specific, but you can still reuse almost all of these.
 
 ### Setting up the workspace
-* Install `Google Chrome`
+* Install `Brave` / `Google Chrome`
 * Install `cowsay` and `figlet`
 * Install `tldr`
 * Install `playerctl`

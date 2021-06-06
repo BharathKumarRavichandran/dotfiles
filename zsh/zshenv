@@ -13,3 +13,4 @@ fi
 
 # Custom Environment Variables
 export DOTDIR=~/.dotfiles
+source "$HOME/.cargo/env"
