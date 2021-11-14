@@ -166,13 +166,23 @@ bindsym $mod+Ctrl+Left workspace prev
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
 set $ws1 1:TTY
-set $ws2 2:Browse
-set $ws3 3:Code
+set $ws2 2:Code
+set $ws3 3:Browse
 set $ws4 4:PlayGrd
 set $ws5 5:FileMan
 set $ws6 6:Video
 set $ws7 7
 set $ws8 8:Music
+
+# Use icons instead of texts for workspaces (Icons will be the name of the i3wm workspaces)
+# set $ws1 1:
+# set $ws2 2:
+# set $ws3 3:
+# set $ws4 4:
+# set $ws5 5:
+# set $ws6 6:
+# set $ws7 7
+# set $ws8 8:
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -305,7 +315,7 @@ bindsym $mod+9 exec --no-startup-id blurlock
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b --config ~/.config/picom/picom.conf
-exec --no-startup-id manjaro-hello
+#exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
@@ -351,39 +361,41 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
-#bar {
-	#i3bar_command i3bar
-	#status_command i3status
-	#position bottom
+bar {
+	i3bar_command i3bar
+	status_command i3status
+	position bottom
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-	#tray_output primary
-	#tray_output eDP1
+        ## Please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+	tray_output primary
+	tray_output eDP1
 
-	#bindsym button4 nop
-	#bindsym button5 nop
-#   font xft:URWGothic-Book 11
-	#strip_workspace_numbers yes
+        ## Disable mouse scroll in titlebar
+	bindsym button4 nop
+	bindsym button5 nop
+        
+        font xft:Iosevka 12
+	strip_workspace_numbers yes
 
-    #colors {
+    colors {
         #background #222D31
-        #statusline #F9FAF9
-        #separator  #454947
+        statusline #F9FAF9
+        separator  #454947
 
-#                          border  backgr. text
+        ##                 border  backgr. text
         #focused_workspace  #F9FAF9 #16a085 #292F34
-        #active_workspace   #595B5B #353836 #FDF6E3
+        active_workspace   #595B5B #353836 #FDF6E3
         #inactive_workspace #595B5B #222D31 #EEE8D5
-        #binding_mode       #16a085 #2C2C2C #F9FAF9
-        #urgent_workspace   #16a085 #FDF6E3 #E5201D
-    #}
-#}
+        binding_mode       #16a085 #2C2C2C #F9FAF9
+        urgent_workspace   #16a085 #FDF6E3 #E5201D
+    }
+}
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
 # Start polybar
-exec_always ~/.config/polybar/launch.sh
+# exec_always ~/.config/polybar/launch.sh
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border

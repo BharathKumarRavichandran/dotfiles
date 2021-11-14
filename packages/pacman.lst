@@ -152,7 +152,7 @@ manjaro-pulse 20210109-1
 manjaro-ranger-settings 20190513-2
 manjaro-release 21.0.5-1
 manjaro-settings-manager-notifier 0.5.6-13
-manjaro-system 20210412-1
+manjaro-system 20210612-1
 manjaro-zsh-config 0.20-3
 mariadb 10.5.10-1
 markdown_previewer 0.r6.64ad4d7-1
@@ -181,7 +181,7 @@ netstat-nat 1.4.10-5
 network-manager-applet 1.22.0-1
 networkmanager 1.30.4-3
 networkmanager-openconnect 1.2.7dev+65+gca4187c-1
-networkmanager-openvpn 1.8.14-1
+networkmanager-openvpn 1.8.16-1
 networkmanager-pptp 1.2.9dev+10+gb41b0d0-4
 networkmanager-vpnc 1.2.7dev+20+gdca3aea-2
 nfs-utils 2.5.3-1
@@ -237,6 +237,7 @@ python-cheetah3 3.2.5-4
 python-pywal 3.3.0-3
 python-virtualenv 20.4.5-1
 qt5-styleplugins 5.0.0.20170311-25
+qt5-webkit 5.212.0alpha4-10
 qt5ct 1.2-1
 ranger 1.9.3.143.g5047d9e5-1
 redis 6.2.3-1
@@ -341,4 +342,4 @@ xz 5.2.5-1
 yay 10.2.2-1
 zensu 0.3-1
 zip 3.0-9
-zoom 5.2.446620.0816-1
+zoom 5.7.28852.0718-1

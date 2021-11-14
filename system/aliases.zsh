@@ -9,6 +9,8 @@ alias trx="tar xvf"
 alias vi="vim"
 alias dirdu="du -h . --max-depth=1"
 alias ports="sudo netstat -tulpn | grep LISTEN"
+alias mvup="find . -mindepth 1 -type f -print -exec mv {} . \;"
+alias delemptydirs="find . -type d -empty -delete"
 
 # Monitor and Display
 alias brightness='xrandr --output eDP-1-1 --brightness'
@@ -76,4 +78,3 @@ alias pym="python3 manage.py"
 
 # Applications
 alias c="code ."
-alias coalad="docker run -ti -v $(pwd):/app --workdir=/app coala/base coala"
