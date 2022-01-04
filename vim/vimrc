@@ -2,7 +2,7 @@
 
 autocmd VimEnter * echo "Welcome, Bharath!"
 
-" vim-bootstrap 
+" vim-bootstrap
 
 "*****************************************************************************
 "" Vim-PLug core
@@ -27,6 +27,11 @@ endif
 
 " Required:
 call plug#begin(expand('~/.vim/plugged'))
+
+"*****************************************************************************
+"" Disable plugin features
+"*****************************************************************************
+let g:polyglot_disabled = ['python']
 
 "*****************************************************************************
 "" Plug install packages
@@ -196,7 +201,7 @@ else
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
-  
+
   if $COLORTERM == 'gnome-terminal'
     set term=gnome-256color
   else
@@ -204,7 +209,7 @@ else
       set term=xterm-256color
     endif
   endif
-  
+
 endif
 
 
@@ -512,7 +517,7 @@ let g:airline#extensions#virtualenv#enabled = 1
 
 " Syntax highlight
 " Default highlight is better than polyglot
-let g:polyglot_disabled = ['python']
+" let g:polyglot_disabled = ['python']
 let python_highlight_all = 1
 
 

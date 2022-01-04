@@ -8,23 +8,29 @@ alias fucking="sudo"
 alias trx="tar xvf"
 alias vi="vim"
 alias dirdu="du -h . --max-depth=1"
-alias ports="sudo netstat -tulpn | grep LISTEN"
 alias mvup="find . -mindepth 1 -type f -print -exec mv {} . \;"
 alias delemptydirs="find . -type d -empty -delete"
+if [[ "$OSTYPE" != "darwin"* ]]; then
+    alias ports="sudo netstat -tulpn | grep LISTEN"
+fi
 
 # Monitor and Display
-alias brightness='xrandr --output eDP-1-1 --brightness'
-alias minbrightness='sudo su -c "echo 1 >/sys/class/backlight/intel_backlight/brightness"'
-alias resetdisplay="xrandr --output eDP1 --mode 1920x1080 --scale 1"
-alias connectdisplay1="xrandr --output HDMI1 --auto --right-of eDP1"
-alias disconnectdisplay1="xrandr --output HDMI1 --off"
-alias connectdisplay2="xrandr --output HDMI2 --auto --left-of eDP1"
-alias disconnectdisplay2="xrandr --output HDMI2 --off"
-alias disconnectdisplays="xrandr --output HDMI1 --off --output HDMI2 --off\
-    --output VGA1 --off --output VGA2 --off"
+if [[ "$OSTYPE" != "darwin"* ]]; then
+    alias brightness='xrandr --output eDP-1-1 --brightness'
+    alias minbrightness='sudo su -c "echo 1 >/sys/class/backlight/intel_backlight/brightness"'
+    alias resetdisplay="xrandr --output eDP1 --mode 1920x1080 --scale 1"
+    alias connectdisplay1="xrandr --output HDMI1 --auto --right-of eDP1"
+    alias disconnectdisplay1="xrandr --output HDMI1 --off"
+    alias connectdisplay2="xrandr --output HDMI2 --auto --left-of eDP1"
+    alias disconnectdisplay2="xrandr --output HDMI2 --off"
+    alias disconnectdisplays="xrandr --output HDMI1 --off --output HDMI2 --off\
+        --output VGA1 --off --output VGA2 --off"
+fi
 
 # Multiple directory listing aliases
-alias ls='ls --color=always' # add colors and file type extensions
+if [[ "$OSTYPE" != "darwin"* ]]; then
+    alias ls='ls --color=always' # add colors and file type extensions
+fi
 alias la='ls -Alh' # show hidden files
 alias lx='ls -lXBh' # sort by extension
 alias lk='ls -lSrh' # sort by size
@@ -42,6 +48,7 @@ alias ldir="ls -l | egrep '^d'" # directories only
 # Shortcuts to vimrc and bashrc
 alias vimrc='vi ~/.vimrc'
 alias bashrc='vi ~/.bashrc'
+alias zshrc='vi ~/.zshrc'
 
 # Loaders
 alias loadbash='source ~/.bashrc'
