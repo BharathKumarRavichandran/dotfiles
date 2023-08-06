@@ -15,5 +15,5 @@ configuration {
 	separator-style: "solid";
 	hide-scrollbar: true;
 	fake-transparency: true;
-	theme: "~/.dotfiles/rofi/themes/oxide-custom.rasi";
 }
+@theme "~/.dotfiles/rofi/themes/oxide-custom.rasi"

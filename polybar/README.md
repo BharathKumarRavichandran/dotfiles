@@ -1,4 +1,9 @@
 # Polybar
+
+### Prerequisites
+Install prerequisites from [here](https://github.com/adi1090x/polybar-themes)
+
+### Symlink configuration
 Run `./setup.sh` to symlink configurations.
 
 #### Overview
