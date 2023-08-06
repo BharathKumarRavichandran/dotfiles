@@ -1,2 +1,2 @@
 # Visual Studio Code
-Run `./setup.sh` to symlink configurations.
+Run `source setup.sh` to symlink configurations.

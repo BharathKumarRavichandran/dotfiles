@@ -4,7 +4,7 @@
 Install prerequisites from [here](https://github.com/adi1090x/polybar-themes)
 
 ### Symlink configuration
-Run `./setup.sh` to symlink configurations.
+Run `source setup.sh` to symlink configurations.
 
 #### Overview
 - `Icon Font` : Icomoon Feather, TerminessTTF Nerd Font

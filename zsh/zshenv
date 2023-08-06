@@ -13,6 +13,7 @@ fi
 
 # Custom Environment Variables
 export DOTDIR=~/.dotfiles
+export DOTDIR_BACKUP=~/.dotfiles-backup
 # source "$HOME/.cargo/env"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then

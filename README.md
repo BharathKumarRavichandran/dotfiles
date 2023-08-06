@@ -1,4 +1,7 @@
 # dotfiles
 My dotfiles.
 
-For getting started with the setup, refer to this [documentation](GETTING_STARTED.md).
+
+For setup instructions, see:
+- Linux: [LINUX_SETUP.md](LINUX_SETUP.md)
+- macOS: [MAC_SETUP.md](MAC_SETUP.md)

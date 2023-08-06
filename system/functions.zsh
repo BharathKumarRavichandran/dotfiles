@@ -22,3 +22,28 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
+
+
+# Get the current date and time in the specified format
+get_current_datetime() 
+{
+    date +"%Y-%m-%d_%H-%M-%S"
+}
+
+
+# Backup a dotfile, handling both regular files and symbolic links
+backup_dotfile() 
+{
+    local file=$1
+    local backup_dir=$2
+
+    echo "Taking back up of file $1 to $2"
+    if [ -e "$file" ]; then
+        if [ -L "$file" ]; then
+            local target=$(readlink -f "$file")
+            cp -L "$target" "$backup_dir/"
+        else
+            cp "$file" "$backup_dir/"
+        fi
+    fi
+}
