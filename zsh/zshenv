@@ -14,9 +14,9 @@ fi
 # Custom Environment Variables
 export DOTDIR=~/.dotfiles
 export DOTDIR_BACKUP=~/.dotfiles-backup
-# source "$HOME/.cargo/env"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    export JAVA_HOME="/Library/Java/JavaVirtualMachines/graalvm-ee-java11-22.0.0.2/Contents/Home"
+    export JAVA_HOME="/Library/Java/JavaVirtualMachines/graalvm-jdk-17.0.8+9.1/Contents/Home"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # source "$HOME/.cargo/env"
 fi

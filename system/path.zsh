@@ -3,12 +3,26 @@ PATH+=":$HOME/.dotfiles/bin/"
 
 # Custom sources
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    PATH+=":/Library/Java/JavaVirtualMachines/graalvm-ee-java11-22.0.0.2/Contents/Home/bin"
-
     # Setting PATH for VSCode
     PATH+=":/usr/local/bin"
 
+    # Setup homebrew
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    # Set JDK path
+    PATH+=":/Library/Java/JavaVirtualMachines/graalvm-jdk-17.0.8+9.1/Contents/Home/bin"
+
     # Setting PATH for Python 3.9
-    PATH+=":/Library/Frameworks/Python.framework/Versions/3.9/bin"
+    #PATH+=":/Library/Frameworks/Python.framework/Versions/3.9/bin"
+
+    # Setup path variables of pyenv
+    command -v pyenv >/dev/null || PATH+=":$PYENV_ROOT/bin"
+    export PYENV_ROOT="$HOME/.pyenv"
+    eval "$(pyenv init - zsh)"
+
+    # Setup path variables of rbenv
+    eval "$(rbenv init - zsh)"
+
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+
 fi
