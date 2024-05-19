@@ -6,9 +6,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # Setting PATH for VSCode
     PATH+=":/usr/local/bin"
 
-    # Setup homebrew
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-
     # Set JDK path
     PATH+=":/Library/Java/JavaVirtualMachines/graalvm-jdk-17.0.8+9.1/Contents/Home/bin"
 
@@ -22,6 +19,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
     # Setup path variables of rbenv
     eval "$(rbenv init - zsh)"
+
+    # Add libpq pg_config path for postgres
+    PATH+=":/opt/homebrew/opt/libpq/bin"
 
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 

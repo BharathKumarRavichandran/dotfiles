@@ -15,7 +15,7 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
 fi
 
 # Monitor and Display
-if [[ "$OSTYPE" != "darwin"* ]]; then
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias brightness='xrandr --output eDP-1-1 --brightness'
     alias minbrightness='sudo su -c "echo 1 >/sys/class/backlight/intel_backlight/brightness"'
     alias resetdisplay="xrandr --output eDP1 --mode 1920x1080 --scale 1"
@@ -28,7 +28,7 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
 fi
 
 # Multiple directory listing aliases
-if [[ "$OSTYPE" != "darwin"* ]]; then
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias ls='ls --color=always' # add colors and file type extensions
 fi
 alias la='ls -Alh' # show hidden files
@@ -85,6 +85,10 @@ alias pym="python3 manage.py"
 
 # Applications
 alias c="code ."
+
+# Docker
+alias d="docker $*"
+alias d-c="docker-compose $*"
 
 # Kubernetes
 alias k="kubectl"

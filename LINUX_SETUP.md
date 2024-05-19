@@ -28,6 +28,7 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
 1. Install [ag](https://github.com/ggreer/the_silver_searcher) and `fzf`:
 	- Install [ag](https://github.com/ggreer/the_silver_searcher) for fast code searching.
 	- Install `fzf` for fuzzy searching.
+1. Install [ack](https://beyondgrep.com/install/)
 1. Configure [i3](/i3).
 1. Setup [xserver](/xserver/)
 1. Install `picom`:
