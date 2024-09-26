@@ -31,14 +31,15 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
 	- Install the `zsh` shell.
 	- Install `zsh-completions`.
 	- Configure [zsh](/zsh) based on your preferences.
+1. Install [tmux](/tmux/)
+1. Generate an SSH key pair and add it to GitHub.
+1. Install GPG.
+    1. Install `pinentry-mac` and configure it.
+    1. Import primary key.
+    1. Create a new signing subkey and add the signing subkey to your GitHub account.
+    1. Update the signing key in [git/.gitconfig](git/.gitconfig)
 1. Set up development environment:
-	- Install `nvm` by running the command:
-	  ```sh
-	  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-	  ```
-	- Install `node:lts` (from nvm).
-	- Install `mongo`.
-	- Install [LAMP](https://www.tecmint.com/install-lamp-in-arch-linux/).
+	- Install `nvm`
 	- Install `docker`.
 	- Install `VSCode`:
 		- [Configure VSCode](/vscode/).
@@ -47,4 +48,4 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
 		- Setup `settings-sync`.
 	- Install `IntelliJ Idea`.
 	- Install `Postman`.
-	- Install `Robo3T`.
+	- Install `Dbeaver`.

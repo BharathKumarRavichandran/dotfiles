@@ -2,9 +2,14 @@
 	email = bharathkumarravichandran@gmail.com
 	name = BharathKumarRavichandran
 	editor = vim
+	signingkey = A711450E8E510AD9!
 [credential]
 	helper = cache --timeout 72000
 [init]
 	defaultBranch = main
 [push]
 	autoSetupRemote = true
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
