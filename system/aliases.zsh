@@ -92,6 +92,3 @@ alias d-c="docker-compose $*"
 
 # Kubernetes
 alias k="kubectl"
-alias ks="kubectl -n dx-system"
-alias kp="kubectl -n dx-prod"
-alias kb="kubectl -n dx-bharar"

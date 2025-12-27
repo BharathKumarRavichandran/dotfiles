@@ -32,6 +32,7 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
 	- Install `zsh-completions`.
 	- Configure [zsh](/zsh) based on your preferences.
 1. Install [tmux](/tmux/)
+1. Install [Rectangle](/rectangle/) for window management.
 1. Generate an SSH key pair and add it to GitHub.
 1. Install GPG.
     1. Install `pinentry-mac` and configure it.
