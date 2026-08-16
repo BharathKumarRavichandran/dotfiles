@@ -11,5 +11,5 @@ backup_dotfile ~/.config/compton.conf "$backup_dir"
 
 # Create symbolic links for Compton configuration
 echo "Creating Compton symlinks..."
-ln -sf "$DOTFILES_DIR/compton/compton.conf" ~/.config/compton.conf
+ln -sf "$DOTDIR/compton/compton.conf" ~/.config/compton.conf
 echo "Done!"

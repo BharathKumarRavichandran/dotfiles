@@ -10,5 +10,5 @@ backup_dotfile ~/.gitconfig "$backup_dir"
 
 # Create symbolic links for Git configuration
 echo "Creating Git symlinks..."
-ln -sf "$DOTFILES_DIR/git/.gitconfig" ~/.gitconfig
+ln -sf "$DOTDIR/git/.gitconfig" ~/.gitconfig
 echo "Done!"

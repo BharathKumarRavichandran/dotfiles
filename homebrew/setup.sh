@@ -6,5 +6,5 @@ if ! command -v brew >/dev/null; then
 fi
 
 echo "Installing Homebrew packages..."
-brew bundle install --file="$DOTFILES_DIR/homebrew/Brewfile"
+brew bundle install --file="$DOTDIR/homebrew/Brewfile"
 echo "Done!"

@@ -15,7 +15,7 @@ mkdir -p ~/.i3/
 
 # Create symbolic links for i3 configuration
 echo "Creating i3 symlinks..."
-ln -sf "$DOTFILES_DIR/i3/status_config" ~/.config/i3status/config
-ln -sf "$DOTFILES_DIR/i3/config" ~/.i3/config
-ln -sf "$DOTFILES_DIR/i3/scrot.conf" ~/.config/i3-scrot.conf
+ln -sf "$DOTDIR/i3/status_config" ~/.config/i3status/config
+ln -sf "$DOTDIR/i3/config" ~/.i3/config
+ln -sf "$DOTDIR/i3/scrot.conf" ~/.config/i3-scrot.conf
 echo "Done!"

@@ -5,7 +5,11 @@ if [ "$#" -lt 2 ]; then
     exit 1
 fi
 
+# macOS ships bash 3.2 as /bin/bash (no negative array indices), so this
+# sticks to positional-parameter slicing rather than "${array[-1]}".
+# shellcheck disable=SC2124
 SRC="${@: -2:1}"
+# shellcheck disable=SC2124
 DST="${@: -1}"
 OPTIONS=("${@:1:$(($#-2))}")
 
@@ -25,9 +29,7 @@ echo "  Destination: $DST"
 echo "  Options:     -avh --progress ${OPTIONS[*]}"
 echo
 
-rsync -avh --progress "${OPTIONS[@]}" -- "$SRC/" "$DST/"
-
-if [ $? -eq 0 ]; then
+if rsync -avh --progress "${OPTIONS[@]}" -- "$SRC/" "$DST/"; then
     echo
     echo "Sync completed successfully."
 else

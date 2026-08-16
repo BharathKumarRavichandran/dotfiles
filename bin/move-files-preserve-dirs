@@ -55,7 +55,7 @@ echo "----------------------------------------"
 
 while IFS= read -r -d '' file; do
     # Path relative to source directory
-    rel="${file#$src/}"
+    rel="${file#"$src"/}"
 
     # Corresponding destination
     dest="$dst/$rel"

@@ -24,7 +24,6 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
     1. Create a new signing subkey and add the signing subkey to your GitHub account.
     1. Update the signing key in [git/.gitconfig](git/.gitconfig)
 1. Set up development environment:
-	- Configure [VSCode](/vscode/):
+	- Set up [VSCode](/vscode/) (symlinks settings/keybindings and installs extensions):
 		- Setup theme and file icons.
-		- Install extensions.
 		- Setup `settings-sync`.

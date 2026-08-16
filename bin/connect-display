@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 usage() {
     echo "Usage: connect-display <DISPLAY> <POSITION> [=left|right]"
@@ -24,15 +24,15 @@ missing_operands() {
 
 if [ $# -eq 1 ] ; then
     case $1 in
-        -h|--help) help; shift ;;
+        -h|--help) help ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
 elif [ $# -eq 2 ] ; then
-    display=`echo $1 | awk '{print toupper($0)}'`
+    display=$(echo "$1" | awk '{print toupper($0)}')
     pos=$2
 else
     missing_operands
 fi
 
 echo "Connecting $display to the $pos of Embedded Display..."
-xrandr --output $display --auto --$pos-of eDP1 && echo "Connection success!"
+xrandr --output "$display" --auto --"$pos"-of eDP1 && echo "Connection success!"

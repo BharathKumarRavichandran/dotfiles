@@ -20,6 +20,17 @@ backup_dotfile "$VSCODE_USER_DIR/keybindings.json" "$backup_dir"
 # Create symbolic links for VS Code configurations
 echo "Creating VS Code symlinks..."
 mkdir -p "$VSCODE_USER_DIR"
-ln -sf "$DOTFILES_DIR/vscode/settings.json" "$VSCODE_USER_DIR/settings.json"
-ln -sf "$DOTFILES_DIR/vscode/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
+ln -sf "$DOTDIR/vscode/settings.json" "$VSCODE_USER_DIR/settings.json"
+ln -sf "$DOTDIR/vscode/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
+
+# Install extensions
+if command -v code >/dev/null; then
+    echo "Installing VS Code extensions..."
+    jq -r '.[] | "\(.publisher).\(.name)"' "$DOTDIR/vscode/extensions.json" | while read -r extension; do
+        code --install-extension "$extension"
+    done
+else
+    echo "code CLI not found, skipping extension install" >&2
+fi
+
 echo "Done!"

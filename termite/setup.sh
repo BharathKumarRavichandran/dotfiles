@@ -12,5 +12,5 @@ backup_dotfile ~/.config/termite/config "$backup_dir"
 # Create symbolic links for Termite configuration
 echo "Creating Termite symlinks..."
 mkdir -p ~/.config/termite
-ln -sf "$DOTFILES_DIR/termite/config" ~/.config/termite/config
+ln -sf "$DOTDIR/termite/config" ~/.config/termite/config
 echo "Done!"

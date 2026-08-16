@@ -11,5 +11,5 @@ fi
 
 # Create symbolic link for polybar configuration
 echo "Creating polybar symlink..."
-ln -sfn "$DOTFILES_DIR/polybar" ~/.config/polybar
+ln -sfn "$DOTDIR/polybar" ~/.config/polybar
 echo "Done!"

@@ -1,2 +1,2 @@
 # xserver
-Run `source setup.sh` to symlink configurations.
+Run `./configure.sh xserver` from the repo root to symlink configurations.

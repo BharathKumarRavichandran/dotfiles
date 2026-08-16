@@ -10,9 +10,9 @@ backup_dotfile ~/.tmux.conf "$backup_dir"
 
 # Create symbolic links for tmux configuration
 echo "Creating tmux symlinks..."
-ln -sf "$DOTFILES_DIR/tmux/tmux.conf" ~/.tmux.conf
+ln -sf "$DOTDIR/tmux/tmux.conf" ~/.tmux.conf
 
-[[ $(uname) == *Darwin* ]] && ln -sf "$DOTFILES_DIR/tmux/tmux_osx.conf" ~/.tmux_osx.conf
+[[ $(uname) == *Darwin* ]] && ln -sf "$DOTDIR/tmux/tmux_osx.conf" ~/.tmux_osx.conf
 
 # tpm
 [[ ! -a ~/.tmux/plugins/tpm ]] && git clone --depth=1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

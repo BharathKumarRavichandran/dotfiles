@@ -1,2 +1,2 @@
 # Kitty
-Run `source setup.sh` to symlink configurations.
+Run `./configure.sh kitty` from the repo root to symlink configurations.

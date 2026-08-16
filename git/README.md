@@ -1,2 +1,2 @@
 # Git
-Run `source setup.sh` to symlink git configurations.
+Run `./configure.sh git` from the repo root to symlink git configurations.

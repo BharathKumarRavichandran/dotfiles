@@ -12,5 +12,5 @@ backup_dotfile ~/.config/picom/picom.conf "$backup_dir"
 # Create symbolic links for Picom configuration
 echo "Creating Picom symlinks..."
 mkdir -p ~/.config/picom/
-ln -sf "$DOTFILES_DIR/picom/picom.conf" ~/.config/picom/picom.conf
+ln -sf "$DOTDIR/picom/picom.conf" ~/.config/picom/picom.conf
 echo "Done!"

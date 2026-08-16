@@ -16,7 +16,7 @@ mkdir -p "$backup_dir"
 # Create configuration files
 echo "Creating zsh symlinks..."
 setopt EXTENDED_GLOB
-for rcfile in "$DOTFILES_DIR"/zsh/^("README.md"|"setup.sh"); do
+for rcfile in "$DOTDIR"/zsh/^("README.md"|"setup.sh"); do
 	backup_dotfile "${ZDOTDIR:-$HOME}/.${rcfile:t}" "$backup_dir"
 	ln -sf "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 	echo $rcfile

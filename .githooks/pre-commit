@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -e
+
+staged=$(git diff --cached --name-only --diff-filter=ACM)
+status=0
+
+sh_files=$(grep -E '^bin/' <<<"$staged" || true)
+if [[ -n "$sh_files" ]]; then
+    if command -v shellcheck >/dev/null; then
+        echo "Running shellcheck on staged bin/ scripts..."
+        # shellcheck disable=SC2086
+        shellcheck $sh_files || status=1
+    else
+        echo "shellcheck not installed, skipping (brew install shellcheck)" >&2
+    fi
+fi
+
+zsh_files=$(grep -E '(^configure\.sh$|/setup\.sh$)' <<<"$staged" || true)
+if [[ -n "$zsh_files" ]]; then
+    echo "Checking zsh syntax on staged setup scripts..."
+    while IFS= read -r f; do
+        zsh -n "$f" || status=1
+    done <<<"$zsh_files"
+fi
+
+exit $status

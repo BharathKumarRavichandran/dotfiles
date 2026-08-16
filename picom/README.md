@@ -1,2 +1,2 @@
 # Picom
-Run `source setup.sh` to symlink configurations.
+Run `./configure.sh picom` from the repo root to symlink configurations.

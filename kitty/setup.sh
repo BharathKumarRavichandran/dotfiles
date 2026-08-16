@@ -13,6 +13,6 @@ backup_dotfile ~/.config/kitty/colors.conf "$backup_dir"
 # Create symbolic links for kitty configurations
 echo "Creating kitty symlinks..."
 mkdir -p ~/.config/kitty
-ln -sf "$DOTFILES_DIR/kitty/kitty.conf" ~/.config/kitty/kitty.conf
-ln -sf "$DOTFILES_DIR/kitty/colors.conf" ~/.config/kitty/colors.conf
+ln -sf "$DOTDIR/kitty/kitty.conf" ~/.config/kitty/kitty.conf
+ln -sf "$DOTDIR/kitty/colors.conf" ~/.config/kitty/colors.conf
 echo "Done!"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 usage() {
     echo "Usage: mv-wp-to-display <WORKSPACE> <DISPLAY>"
@@ -24,7 +24,7 @@ missing_operands() {
 
 if [ $# -eq 1 ] ; then
     case $1 in
-        -h|--help) help; shift ;;
+        -h|--help) help ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
 elif [ $# -eq 2 ] ; then

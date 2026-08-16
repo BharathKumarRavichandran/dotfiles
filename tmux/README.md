@@ -1,2 +1,2 @@
 # tmux
-Run `source setup.sh` to symlink configurations.
+Run `./configure.sh tmux` from the repo root to symlink configurations.

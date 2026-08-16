@@ -12,9 +12,9 @@ backup_dotfile ~/.config/spicetify/config.ini "$backup_dir"
 # Create symbolic links for Spicetify Themes and Extensions
 echo "Creating Spicetify symlinks..."
 mkdir -p ~/.config/spicetify
-ln -sf "$DOTFILES_DIR/spicetify/config.ini" ~/.config/spicetify/config.ini
-ln -sf "$DOTFILES_DIR/spicetify/Themes" ~/.config/spicetify
-ln -sf "$DOTFILES_DIR/spicetify/Extensions" ~/.config/spicetify
+ln -sf "$DOTDIR/spicetify/config.ini" ~/.config/spicetify/config.ini
+ln -sf "$DOTDIR/spicetify/Themes" ~/.config/spicetify
+ln -sf "$DOTDIR/spicetify/Extensions" ~/.config/spicetify
 # Uncomment the following line if needed
-# ln -sf "$DOTFILES_DIR/spicetify/CustomApps" ~/.config/spicetify
+# ln -sf "$DOTDIR/spicetify/CustomApps" ~/.config/spicetify
 echo "Done!"

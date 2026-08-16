@@ -1,5 +1,5 @@
 # Custom binaries
-PATH+=":$HOME/.dotfiles/bin/"
+PATH+=":$DOTDIR/bin/"
 
 # Custom sources
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -15,5 +15,6 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
 fi
 
-[[ -d "$HOME/.local/bin" ]] && PATH+="$HOME/.local/bin"
-[[ -d "$HOME/.grok/bin" ]] && PATH+="$HOME/.grok/bin"
+[[ -d "$HOME/.local/bin" ]] && PATH+=":$HOME/.local/bin"
+[[ -d "$HOME/.grok/bin" ]] && PATH+=":$HOME/.grok/bin"
+[[ -d "$HOME/.grok/completions/zsh" ]] && fpath=("$HOME/.grok/completions/zsh" $fpath)

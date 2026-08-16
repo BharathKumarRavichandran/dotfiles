@@ -1,2 +1,2 @@
 # Visual Studio Code
-Run `source setup.sh` to symlink configurations.
+Run `./configure.sh vscode` from the repo root to symlink configurations.

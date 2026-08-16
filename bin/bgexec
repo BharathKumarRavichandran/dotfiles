@@ -1,7 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+if [[ $# -eq 0 ]]; then
+    echo "Usage: bgexec <command> [args...]" >&2
+    exit 1
+fi
+
+if ! command -v "$1" &> /dev/null
+then
+    echo "bgexec: command not found: $1" >&2
+    exit 1
+fi
 
 echo "Opening $1..."
-if command -v $1 &> /dev/null
-then
-    $1 $2 </dev/null >/dev/null 2>&1 & disown
-fi
+"$@" </dev/null >/dev/null 2>&1 & disown

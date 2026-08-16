@@ -1,2 +1,2 @@
 # Dunst
-Run `source setup.sh` to symlink configurations.
+Run `./configure.sh dunst` from the repo root to symlink configurations.

@@ -1,2 +1,2 @@
 # Prezto Zsh
-Run `source setup.sh` to setup prezto and create symlinks.
+Run `./configure.sh zsh` from the repo root to setup prezto and create symlinks.

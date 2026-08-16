@@ -12,5 +12,5 @@ backup_dotfile ~/.config/dunst/dunstrc "$backup_dir"
 # Create symbolic links for Dunst configuration
 echo "Creating Dunst symlinks..."
 mkdir -p ~/.config/dunst
-ln -sf "$DOTFILES_DIR/dunst/dunstrc" ~/.config/dunst/dunstrc
+ln -sf "$DOTDIR/dunst/dunstrc" ~/.config/dunst/dunstrc
 echo "Done!"

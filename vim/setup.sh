@@ -11,5 +11,5 @@ backup_dotfile ~/.vimrc "$backup_dir"
 
 # Create symbolic links for Vim configuration
 echo "Creating Vim symlinks..."
-ln -sf "$DOTFILES_DIR/vim/vimrc" ~/.vimrc
+ln -sf "$DOTDIR/vim/vimrc" ~/.vimrc
 echo "Done!"

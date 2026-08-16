@@ -12,5 +12,5 @@ backup_dotfile ~/.config/rofi/config.rasi "$backup_dir"
 # Create symbolic links for rofi configuration
 echo "Creating rofi symlinks..."
 mkdir -p ~/.config/rofi
-ln -sf "$DOTFILES_DIR/rofi/config.rasi" ~/.config/rofi/config.rasi
+ln -sf "$DOTDIR/rofi/config.rasi" ~/.config/rofi/config.rasi
 echo "Done!"

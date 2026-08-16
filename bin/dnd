@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 getargs() {
   while getopts "se" opt
@@ -6,17 +6,30 @@ getargs() {
     case $opt in
       s) start="true";;
       e) end="true";;
+      *) ;;
     esac
   done
 }
 
 start_dnd() {
-  notify-send "DUNST_COMMAND_PAUSE";
+  if [[ "$(uname)" == "Darwin" ]]
+  then
+    shortcuts run "Enable DND"
+  else
+    notify-send "DUNST_COMMAND_PAUSE";
+  fi
+  echo "DND enabled"
 }
 
 end_dnd() {
-  notify-send "DUNST_COMMAND_RESUME";
-  notify-send "Do Not Disturb" "DND disabled. Notifications will be shown.";
+  if [[ "$(uname)" == "Darwin" ]]
+  then
+    shortcuts run "Disable DND"
+  else
+    notify-send "DUNST_COMMAND_RESUME";
+    notify-send "Do Not Disturb" "DND disabled. Notifications will be shown.";
+  fi
+  echo "DND disabled"
 }
 
 main() {

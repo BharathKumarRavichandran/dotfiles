@@ -13,7 +13,7 @@ backup_dotfile ~/.Xclients "$backup_dir"
 
 # Create symbolic links for X Server configurations
 echo "Creating X Server symlinks..."
-ln -sf "$DOTFILES_DIR/xserver/Xresources" ~/.Xresources
-ln -sf "$DOTFILES_DIR/xserver/xinitrc" ~/.xinitrc
-ln -sf "$DOTFILES_DIR/xserver/Xclients" ~/.Xclients
+ln -sf "$DOTDIR/xserver/Xresources" ~/.Xresources
+ln -sf "$DOTDIR/xserver/xinitrc" ~/.xinitrc
+ln -sf "$DOTDIR/xserver/Xclients" ~/.Xclients
 echo "Done!"
