@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#
+# Fuzzy-pick a project dir and jump to (or create) its tmux session.
+#
+set -e
+
+search_paths=(
+    "$HOME/.dotfiles"
+    "$HOME/playground"
+    "$HOME/dev"
+    "$HOME/code"
+    "$HOME/work"
+)
+
+candidates() {
+    find "${search_paths[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null
+    command -v zoxide > /dev/null 2>&1 && zoxide query -l
+}
+
+selected="${1:-$(candidates | awk '!seen[$0]++' | fzf)}"
+[[ -z "$selected" ]] && exit 0
+
+session_name="$(basename "$selected" | tr . _)"
+
+if ! tmux has-session -t "$session_name" 2> /dev/null; then
+    tmux new-session -ds "$session_name" -c "$selected"
+fi
+
+if [[ -z "$TMUX" ]]; then
+    tmux attach-session -t "$session_name"
+else
+    tmux switch-client -t "$session_name"
+fi

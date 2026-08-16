@@ -42,5 +42,6 @@
     "files.watcherExclude": {
         "**/.git/objects/**": true,
         "**/node_modules/**": true
-    }
+    },
+    "claudeCode.preferredLocation": "panel"
 }

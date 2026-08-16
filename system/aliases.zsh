@@ -77,6 +77,9 @@ alias pym="python3 manage.py"
 # Applications
 alias c="code ."
 
+# tmux
+alias ts="tmux-sessionizer"
+
 # Docker
 alias d="docker"
 alias d-c="docker-compose"
