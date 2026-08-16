@@ -1,0 +1,148 @@
+#!/bin/bash
+
+overwrite=false
+
+if [[ "$1" == "-o" ]]; then
+    overwrite=true
+    shift
+fi
+
+if [[ $# -ne 2 ]]; then
+    echo "Usage: $0 [-o] <source_dir> <destination_dir>"
+    exit 1
+fi
+
+# Resolve source and destination to absolute paths
+if [[ ! -d "$1" ]]; then
+    echo "Error: Source directory does not exist: $1"
+    exit 1
+fi
+
+src="$(cd "$1" && pwd)"
+
+if ! mkdir -p "$2"; then
+    echo "Error: Could not create destination directory: $2"
+    exit 1
+fi
+
+dst="$(cd "$2" && pwd)"
+
+# Source and destination cannot be the same
+if [[ "$src" == "$dst" ]]; then
+    echo "Error: Source and destination cannot be the same directory."
+    exit 1
+fi
+
+# Destination cannot be inside source
+case "$dst/" in
+    "$src/"*)
+        echo "Error: Destination cannot be inside source directory."
+        exit 1
+        ;;
+esac
+
+existing=()
+moved=()
+overwritten=()
+errors=()
+
+echo "Source      : $src"
+echo "Destination : $dst"
+echo "Overwrite   : $overwrite"
+echo
+echo "Starting..."
+echo "----------------------------------------"
+
+while IFS= read -r -d '' file; do
+    # Path relative to source directory
+    rel="${file#$src/}"
+
+    # Corresponding destination
+    dest="$dst/$rel"
+
+    # Existing file, directory, or symlink at destination
+    if [[ -e "$dest" || -L "$dest" ]]; then
+        if [[ "$overwrite" == true ]]; then
+            while true; do
+                read -r -p "Overwrite '$rel'? [y/N]: " answer
+
+                case "$answer" in
+                    [Yy])
+                        echo "[OVERWRITE] $rel"
+
+                        if mv -- "$file" "$dest"; then
+                            moved+=("$rel")
+                            overwritten+=("$rel")
+                        else
+                            echo "[ERROR]     Failed to overwrite: $rel"
+                            errors+=("$rel")
+                        fi
+                        break
+                        ;;
+
+                    [Nn]|"")
+                        echo "[SKIP]      $rel"
+                        existing+=("$rel")
+                        break
+                        ;;
+
+                    *)
+                        echo "Please enter y or n."
+                        ;;
+                esac
+            done
+        else
+            echo "[SKIP]      $rel"
+            existing+=("$rel")
+        fi
+
+        continue
+    fi
+
+    # Create destination directory only when needed
+    if ! mkdir -p "$(dirname "$dest")"; then
+        echo "[ERROR]     Failed to create directory for: $rel"
+        errors+=("$rel")
+        continue
+    fi
+
+    echo "[MOVE]      $rel"
+
+    if mv -- "$file" "$dest"; then
+        moved+=("$rel")
+    else
+        echo "[ERROR]     Failed to move: $rel"
+        errors+=("$rel")
+    fi
+
+done < <(find "$src" -type f -print0)
+
+echo
+echo "========================================"
+echo "Summary"
+echo "========================================"
+echo "Moved             : ${#moved[@]}"
+echo "Overwritten       : ${#overwritten[@]}"
+echo "Skipped (exists)  : ${#existing[@]}"
+echo "Errors            : ${#errors[@]}"
+
+if [[ ${#existing[@]} -gt 0 ]]; then
+    echo
+    echo "Files skipped because they already exist:"
+    printf '  %s\n' "${existing[@]}"
+fi
+
+if [[ ${#overwritten[@]} -gt 0 ]]; then
+    echo
+    echo "Files overwritten:"
+    printf '  %s\n' "${overwritten[@]}"
+fi
+
+if [[ ${#errors[@]} -gt 0 ]]; then
+    echo
+    echo "Files with errors:"
+    printf '  %s\n' "${errors[@]}"
+fi
+
+echo
+echo "Done."

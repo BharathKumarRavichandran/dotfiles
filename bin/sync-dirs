@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ "$#" -lt 2 ]; then
+    echo "Usage: $0 [rsync_options...] <source_dir> <destination_dir>"
+    exit 1
+fi
+
+SRC="${@: -2:1}"
+DST="${@: -1}"
+OPTIONS=("${@:1:$(($#-2))}")
+
+if [ ! -d "$SRC" ]; then
+    echo "Error: Source directory does not exist: $SRC"
+    exit 1
+fi
+
+if [ ! -d "$DST" ]; then
+    echo "Destination directory does not exist. Creating: $DST"
+    mkdir -p "$DST" || exit 1
+fi
+
+echo "Syncing:"
+echo "  Source:      $SRC"
+echo "  Destination: $DST"
+echo "  Options:     -avh --progress ${OPTIONS[*]}"
+echo
+
+rsync -avh --progress "${OPTIONS[@]}" -- "$SRC/" "$DST/"
+
+if [ $? -eq 0 ]; then
+    echo
+    echo "Sync completed successfully."
+else
+    echo
+    echo "Sync failed."
+    exit 1
+fi

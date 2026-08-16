@@ -20,3 +20,5 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # source "$HOME/.cargo/env"
 fi
+
+. "$HOME/.cargo/env"
