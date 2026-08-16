@@ -1,12 +1,11 @@
 #!/bin/sh
 #
-# Quick search in a directory for a string ($@).
+# Quick case-insensitive search in a directory for a string ($@).
 #
 set -e
 
-# use -iru to search directories ack usually ignores (like .git)
-if [ -x /usr/bin/ack-grep ]; then
-    ack-grep -i "$@"
+if command -v rg > /dev/null 2>&1; then
+    rg -i "$@"
 else
-    ack -i "$@"
+    grep -rin "$@" .
 fi

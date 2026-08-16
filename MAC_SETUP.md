@@ -20,10 +20,13 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
    - `xorg-font-utils`.
 1. Install `bat`:
    - Configure [bat](/bat).
-1. Install [ag](https://github.com/ggreer/the_silver_searcher) and `fzf`:
-	- Install [ag](https://github.com/ggreer/the_silver_searcher) for fast code searching.
+1. Install [eza](https://github.com/eza-community/eza) for a modern `ls` replacement.
+1. Install [fd](https://github.com/sharkdp/fd) for a modern `find` replacement.
+1. Install [ripgrep](https://github.com/BurntSushi/ripgrep) and `fzf`:
+	- Install [ripgrep](https://github.com/BurntSushi/ripgrep) for fast code searching.
 	- Install `fzf` for fuzzy searching.
-1. Install [ack](https://beyondgrep.com/install/)
+1. Install [zoxide](https://github.com/ajeetdsouza/zoxide) for smarter directory navigation.
+1. Install [delta](https://github.com/dandavison/delta) for syntax-highlighted Git and diff output.
 1. Install `iterm2`:
 	- Install the `iterm2` terminal emulator.
 	- Configure [iterm2](/iterm2) based on your preferences.
@@ -40,7 +43,7 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
     1. Create a new signing subkey and add the signing subkey to your GitHub account.
     1. Update the signing key in [git/.gitconfig](git/.gitconfig)
 1. Set up development environment:
-	- Install `nvm`
+    - Install [mise](https://mise.jdx.dev) to manage language runtimes.
 	- Install `docker`.
 	- Install `VSCode`:
 		- [Configure VSCode](/vscode/).

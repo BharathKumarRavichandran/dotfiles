@@ -21,14 +21,18 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
    - `Source Code Pro`
    - `FiraCode`
    - `Iosevka`
+   - `Iosevka Nerd`
    - `powerline-fonts`
    - `xorg-font-utils`.
 1. Install `bat`:
    - Configure [bat](/bat).
-1. Install [ag](https://github.com/ggreer/the_silver_searcher) and `fzf`:
-	- Install [ag](https://github.com/ggreer/the_silver_searcher) for fast code searching.
+1. Install [eza](https://github.com/eza-community/eza) for a modern `ls` replacement.
+1. Install [fd](https://github.com/sharkdp/fd) for a modern `find` replacement.
+1. Install [ripgrep](https://github.com/BurntSushi/ripgrep) and `fzf`:
+	- Install [ripgrep](https://github.com/BurntSushi/ripgrep) for fast code searching.
 	- Install `fzf` for fuzzy searching.
-1. Install [ack](https://beyondgrep.com/install/)
+1. Install [zoxide](https://github.com/ajeetdsouza/zoxide) for smarter directory navigation.
+1. Install [delta](https://github.com/dandavison/delta) for syntax-highlighted Git and diff output.
 1. Configure [i3](/i3).
 1. Setup [xserver](/xserver/)
 1. Install `picom`:
@@ -59,11 +63,7 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
 	- Install other required packages from [here](/packages/).
 	- Make sure to have the necessary fonts installed.
 1. Set up development environment:
-	- Install `nvm` by running the command:
-	  ```sh
-	  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-	  ```
-	- Install `node:lts` (from nvm).
+	- Install [mise](https://mise.jdx.dev) to manage language runtimes.
 	- Install `mongo`.
 	- Install [LAMP](https://www.tecmint.com/install-lamp-in-arch-linux/).
 	- Install `docker`.

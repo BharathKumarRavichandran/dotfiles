@@ -15,10 +15,4 @@ fi
 export DOTDIR=~/.dotfiles
 export DOTDIR_BACKUP=~/.dotfiles-backup
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    export JAVA_HOME="/Library/Java/JavaVirtualMachines/graalvm-jdk-17.0.8+9.1/Contents/Home"
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # source "$HOME/.cargo/env"
-fi
-
-. "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

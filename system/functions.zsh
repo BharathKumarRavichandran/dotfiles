@@ -3,7 +3,7 @@
 # # usage: ex <file>
 ex ()
 {
-  if [ -f $1 ] ; then
+  if [[ -f $1 ]] ; then
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
@@ -38,8 +38,8 @@ backup_dotfile()
     local backup_dir=$2
 
     echo "Taking back up of file $1 to $2"
-    if [ -e "$file" ]; then
-        if [ -L "$file" ]; then
+    if [[ -e "$file" ]]; then
+        if [[ -L "$file" ]]; then
             local target=$(readlink -f "$file")
             cp -L "$target" "$backup_dir/"
         else

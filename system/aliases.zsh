@@ -3,7 +3,6 @@
 # General
 alias die="figlet 'Goodbye!' && poweroff"
 alias killprocess='fuser -k 3000/tcp'
-alias trx="tar xvf"
 alias fucking="sudo"
 alias trx="tar xvf"
 alias vi="vim"
@@ -27,23 +26,15 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         --output VGA1 --off --output VGA2 --off"
 fi
 
-# Multiple directory listing aliases
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    alias ls='ls --color=always' # add colors and file type extensions
-fi
-alias la='ls -Alh' # show hidden files
-alias lx='ls -lXBh' # sort by extension
-alias lk='ls -lSrh' # sort by size
-alias lc='ls -lcrh' # sort by change time
-alias lu='ls -lurh' # sort by access time
-alias lr='ls -lRh' # recursive ls
-alias lt='ls -ltrh' # sort by date
-alias lm='ls -alh |more' # pipe through 'more'
-alias lw='ls -xAh' # wide listing format
-alias ll='ls -Fls' # long listing format
-alias labc='ls -lap' #alphabetical sort
-alias lf="ls -l | egrep -v '^d'" # files only
-alias ldir="ls -l | egrep '^d'" # directories only
+# Multiple directory listing aliases (eza)
+alias ls='eza --icons --group-directories-first'
+alias la='eza -la --icons --group-directories-first' # show hidden files
+alias ll='eza -l --icons --group-directories-first --git' # long listing with git status
+alias lt='eza -l --sort=modified --icons --group-directories-first' # sort by date
+alias lk='eza -l --sort=size --icons --group-directories-first' # sort by size
+alias lr='eza -l --recurse --icons' # recursive
+alias lg='eza -l --git --icons --group-directories-first' # git-aware long listing
+alias tree='eza -T --icons' # tree view
 
 # Shortcuts to vimrc and bashrc
 alias vimrc='vi ~/.vimrc'
@@ -87,8 +78,8 @@ alias pym="python3 manage.py"
 alias c="code ."
 
 # Docker
-alias d="docker $*"
-alias d-c="docker-compose $*"
+alias d="docker"
+alias d-c="docker-compose"
 
 # Kubernetes
 alias k="kubectl"

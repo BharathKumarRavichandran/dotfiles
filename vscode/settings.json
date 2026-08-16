@@ -1,19 +1,46 @@
 {
-    "workbench.colorTheme": "Material Theme Ocean High Contrast",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.colorTheme": "Night Owl",
+    "editor.comments.insertSpace": false,
+    "editor.accessibilitySupport": "off",
+    "editor.detectIndentation": false,
+    "terminal.integrated.env.osx": {
+        "FIG_NEW_SESSION": "1"
+    },
+    "window.zoomLevel": 1,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "dotenv": false,
+        "toml": true
+    },
+    "files.associations": {
+        ".env*": "dotenv"
+    },
+    "github.copilot.advanced": {},
+    "files.trimTrailingWhitespaceInRegexAndStrings": false,
+    "editor.trimAutoWhitespace": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
     "terminal.external.linuxExec": "zsh",
     "workbench.iconTheme": "material-icon-theme",
     "vim.useCtrlKeys": false,
     "editor.fontSize": 16,
     "debug.console.fontSize": 16,
     "terminal.integrated.fontSize": 16,
-    "terminal.integrated.fontFamily": "Iosevka",
+    "terminal.integrated.fontFamily": "Iosevka Nerd Font Mono",
     "markdown.preview.fontSize": 16,
     "mssql.resultsFontSize": 16,
-    "terminal.integrated.shell.linux": "/bin/zsh",
+    "terminal.integrated.profiles.linux": {
+        "zsh": {
+            "path": "/bin/zsh"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "zsh",
     "glassit.alpha": 240,
     "files.watcherExclude": {
         "**/.git/objects/**": true,
         "**/node_modules/**": true
     }
-}
 }

@@ -7,6 +7,7 @@ alias gcld="git clone --depth 1"
 alias gss="git status"
 alias gdiff="git diff"
 alias gdiffs="git diff --staged"
+alias gdiffside="git -c delta.side-by-side=true diff"
 
 alias ga="git add"
 alias gap="git add -p"
