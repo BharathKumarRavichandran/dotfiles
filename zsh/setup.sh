@@ -1,22 +1,24 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 echo "Configuring zsh configurations..."
 
 # Clone prezto repository
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-
-# Backup zsh config if it exists
-echo "Creating zshrc backups..."
-if [ -f ~/.zshrc ];
-	then
-		mv ~/.zshrc ~/.zshrc.backup
+if [[ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]]; then
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
+
+# Backup existing zsh configuration
+echo "Creating zshrc backups..."
+today=$(get_current_datetime)
+backup_dir=$DOTDIR_BACKUP/zsh/$today
+mkdir -p "$backup_dir"
 
 # Create configuration files
 echo "Creating zsh symlinks..."
 setopt EXTENDED_GLOB
-for rcfile in ~/.dotfiles/zsh/^("README.md"|"setup.sh"); do
-	ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+for rcfile in "$DOTFILES_DIR"/zsh/^("README.md"|"setup.sh"); do
+	backup_dotfile "${ZDOTDIR:-$HOME}/.${rcfile:t}" "$backup_dir"
+	ln -sf "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 	echo $rcfile
 done
 

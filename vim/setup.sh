@@ -1,9 +1,4 @@
-#!/bin/sh
-
-# Set your dotfiles backup directory if not already set
-if [ -z "$DOTDIR_BACKUP" ]; then
-    DOTDIR_BACKUP=~/.dotfiles-backup
-fi
+#!/usr/bin/env zsh
 
 # Backup existing Vim configuration
 echo "Backing up existing Vim configuration..."
@@ -16,5 +11,5 @@ backup_dotfile ~/.vimrc "$backup_dir"
 
 # Create symbolic links for Vim configuration
 echo "Creating Vim symlinks..."
-ln -sf ~/.dotfiles/vim/vimrc ~/.vimrc
+ln -sf "$DOTFILES_DIR/vim/vimrc" ~/.vimrc
 echo "Done!"

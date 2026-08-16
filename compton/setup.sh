@@ -1,9 +1,4 @@
-#!/bin/sh
-
-# Set your dotfiles backup directory if not already set
-if [ -z "$DOTDIR_BACKUP" ]; then
-    DOTDIR_BACKUP=~/.dotfiles-backup
-fi
+#!/usr/bin/env zsh
 
 # Backup existing Compton configuration
 echo "Backing up existing Compton configuration..."
@@ -16,5 +11,5 @@ backup_dotfile ~/.config/compton.conf "$backup_dir"
 
 # Create symbolic links for Compton configuration
 echo "Creating Compton symlinks..."
-ln -sf ~/.dotfiles/compton/compton.conf ~/.config/compton.conf
+ln -sf "$DOTFILES_DIR/compton/compton.conf" ~/.config/compton.conf
 echo "Done!"

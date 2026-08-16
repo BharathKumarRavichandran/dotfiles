@@ -1,9 +1,4 @@
-#!/bin/bash
-
-# Set your dotfiles backup directory if not already set
-if [ -z "$DOTDIR_BACKUP" ]; then
-    DOTDIR_BACKUP=~/.dotfiles-backup
-fi
+#!/usr/bin/env zsh
 
 # Backup existing Git configuration
 echo "Backing up existing Git configuration..."
@@ -15,5 +10,5 @@ backup_dotfile ~/.gitconfig "$backup_dir"
 
 # Create symbolic links for Git configuration
 echo "Creating Git symlinks..."
-ln -sf ~/.dotfiles/git/.gitconfig ~/.gitconfig
+ln -sf "$DOTFILES_DIR/git/.gitconfig" ~/.gitconfig
 echo "Done!"

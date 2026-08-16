@@ -8,48 +8,23 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
 
 
 ## Setting up the workspace
-1. Install `brew`
-1. Install and set up [git](/git).
-1. Install and set up [vim](/vim).
-1. Install `brave-browser`.
-1. Install fonts and font-utils:
-   - `Source Code Pro`
-   - `FiraCode`
-   - `Iosevka`
-   - `powerline-fonts`
-   - `xorg-font-utils`.
-1. Install `bat`:
-   - Configure [bat](/bat).
-1. Install [eza](https://github.com/eza-community/eza) for a modern `ls` replacement.
-1. Install [fd](https://github.com/sharkdp/fd) for a modern `find` replacement.
-1. Install [ripgrep](https://github.com/BurntSushi/ripgrep) and `fzf`:
-	- Install [ripgrep](https://github.com/BurntSushi/ripgrep) for fast code searching.
-	- Install `fzf` for fuzzy searching.
-1. Install [zoxide](https://github.com/ajeetdsouza/zoxide) for smarter directory navigation.
-1. Install [delta](https://github.com/dandavison/delta) for syntax-highlighted Git and diff output.
-1. Install `iterm2`:
-	- Install the `iterm2` terminal emulator.
-	- Configure [iterm2](/iterm2) based on your preferences.
-1. Install `zsh` and `zsh-completions`:
-	- Install the `zsh` shell.
-	- Install `zsh-completions`.
-	- Configure [zsh](/zsh) based on your preferences.
-1. Install [tmux](/tmux/)
-1. Install [Rectangle](/rectangle/) for window management.
+1. Install `brew`.
+1. Install packages: `./configure.sh homebrew` (see [homebrew/Brewfile](/homebrew/Brewfile) for what's included, and add anything missing there).
+1. Set up [git](/git).
+1. Set up [vim](/vim).
+1. Configure [bat](/bat).
+1. Configure [iterm2](/iterm2) based on your preferences.
+1. Configure [zsh](/zsh) based on your preferences.
+1. Set up [tmux](/tmux/).
+1. Configure [Rectangle](/rectangle/) for window management.
 1. Generate an SSH key pair and add it to GitHub.
-1. Install GPG.
-    1. Install `pinentry-mac` and configure it.
+1. Set up GPG:
+    1. Configure `pinentry-mac`.
     1. Import primary key.
     1. Create a new signing subkey and add the signing subkey to your GitHub account.
     1. Update the signing key in [git/.gitconfig](git/.gitconfig)
 1. Set up development environment:
-    - Install [mise](https://mise.jdx.dev) to manage language runtimes.
-	- Install `docker`.
-	- Install `VSCode`:
-		- [Configure VSCode](/vscode/).
+	- Configure [VSCode](/vscode/):
 		- Setup theme and file icons.
 		- Install extensions.
 		- Setup `settings-sync`.
-	- Install `IntelliJ Idea`.
-	- Install `Postman`.
-	- Install `Dbeaver`.

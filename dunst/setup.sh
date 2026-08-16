@@ -1,9 +1,4 @@
-#!/bin/sh
-
-# Set your dotfiles backup directory if not already set
-if [ -z "$DOTDIR_BACKUP" ]; then
-    DOTDIR_BACKUP=~/.dotfiles-backup
-fi
+#!/usr/bin/env zsh
 
 # Backup existing Dunst configuration
 echo "Backing up existing Dunst configuration..."
@@ -17,5 +12,5 @@ backup_dotfile ~/.config/dunst/dunstrc "$backup_dir"
 # Create symbolic links for Dunst configuration
 echo "Creating Dunst symlinks..."
 mkdir -p ~/.config/dunst
-ln -sf ~/.dotfiles/dunst/dunstrc ~/.config/dunst/dunstrc
+ln -sf "$DOTFILES_DIR/dunst/dunstrc" ~/.config/dunst/dunstrc
 echo "Done!"

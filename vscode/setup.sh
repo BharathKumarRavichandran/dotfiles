@@ -1,9 +1,4 @@
-#!/bin/sh
-
-# Set your dotfiles backup directory if not already set
-if [ -z "$DOTDIR_BACKUP" ]; then
-    DOTDIR_BACKUP=~/.dotfiles-backup
-fi
+#!/usr/bin/env zsh
 
 # Backup existing VS Code configurations
 echo "Backing up existing VS Code configurations..."
@@ -25,6 +20,6 @@ backup_dotfile "$VSCODE_USER_DIR/keybindings.json" "$backup_dir"
 # Create symbolic links for VS Code configurations
 echo "Creating VS Code symlinks..."
 mkdir -p "$VSCODE_USER_DIR"
-ln -sf ~/.dotfiles/vscode/settings.json "$VSCODE_USER_DIR/settings.json"
-ln -sf ~/.dotfiles/vscode/keybindings.json "$VSCODE_USER_DIR/keybindings.json"
+ln -sf "$DOTFILES_DIR/vscode/settings.json" "$VSCODE_USER_DIR/settings.json"
+ln -sf "$DOTFILES_DIR/vscode/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
 echo "Done!"

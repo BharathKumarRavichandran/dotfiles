@@ -1,0 +1,42 @@
+# Homebrew packages for macOS setup.
+# Install with: ./configure.sh homebrew (or: brew bundle install --file=homebrew/Brewfile)
+# See MAC_SETUP.md for the full workspace setup this is one step of.
+
+# Core tools
+brew "git"
+brew "vim"
+brew "gnupg"
+brew "pinentry-mac"
+
+# Modern CLI replacements
+brew "bat"
+brew "eza"
+brew "fd"
+brew "ripgrep"
+brew "fzf"
+brew "zoxide"
+brew "git-delta"
+
+# Shell
+brew "zsh"
+brew "zsh-completions"
+brew "tmux"
+
+# Dev tooling
+brew "mise"
+
+# Fonts
+cask "font-source-code-pro"
+cask "font-fira-code"
+cask "font-iosevka"
+cask "font-iosevka-nerd-font"
+
+# Apps
+cask "brave-browser"
+cask "iterm2"
+cask "rectangle"
+cask "docker"
+cask "visual-studio-code"
+cask "postman"
+cask "dbeaver-community"
+cask "intellij-idea-ce"
