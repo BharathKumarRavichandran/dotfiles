@@ -47,7 +47,11 @@ done
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
-compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  compinit # dump is missing or stale -> do the full scan
+else
+  compinit -C # dump is fresh (< 24h old) -> trust it, skip the scan
+fi
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}

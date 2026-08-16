@@ -12,13 +12,21 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # Setting PATH for Python 3.9
     #PATH+=":/Library/Frameworks/Python.framework/Versions/3.9/bin"
 
-    # Setup path variables of pyenv
+    # Setup path variables of pyenv (lazy init)
     command -v pyenv >/dev/null || PATH+=":$PYENV_ROOT/bin"
     export PYENV_ROOT="$HOME/.pyenv"
-    eval "$(pyenv init - zsh)"
+    pyenv() {
+      unset -f pyenv
+      eval "$(command pyenv init - zsh)"
+      pyenv "$@"
+    }
 
-    # Setup path variables of rbenv
-    eval "$(rbenv init - zsh)"
+    # Setup path variables of rbenv (lazy init)
+    rbenv() {
+      unset -f rbenv
+      eval "$(command rbenv init - zsh)"
+      rbenv "$@"
+    }
 
     # Add libpq pg_config path for postgres
     PATH+=":/opt/homebrew/opt/libpq/bin"
