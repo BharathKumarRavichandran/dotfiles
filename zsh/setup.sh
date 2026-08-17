@@ -2,11 +2,6 @@
 
 echo "Configuring zsh configurations..."
 
-# Clone prezto repository
-if [[ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]]; then
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-fi
-
 # Backup existing zsh configuration
 echo "Creating zshrc backups..."
 today=$(get_current_datetime)

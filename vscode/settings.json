@@ -1,6 +1,6 @@
 {
     "diffEditor.ignoreTrimWhitespace": false,
-    "workbench.colorTheme": "Night Owl",
+    "workbench.colorTheme": "Ayu Dark Bordered",
     "editor.comments.insertSpace": false,
     "editor.accessibilitySupport": "off",
     "editor.detectIndentation": false,
@@ -24,7 +24,6 @@
     "editor.trimAutoWhitespace": false,
     "github.copilot.nextEditSuggestions.enabled": true,
     "terminal.external.linuxExec": "zsh",
-    "workbench.iconTheme": "material-icon-theme",
     "vim.useCtrlKeys": false,
     "editor.fontSize": 16,
     "debug.console.fontSize": 16,

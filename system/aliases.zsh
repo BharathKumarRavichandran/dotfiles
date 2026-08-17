@@ -13,6 +13,19 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
     alias ports="sudo netstat -tulpn | grep LISTEN"
 fi
 
+# Utility
+alias mkdir="mkdir -p"
+alias _="sudo"
+alias rmi="rm -i"
+alias cpi="cp -i"
+alias mvi="mv -i"
+alias lni="ln -i"
+alias df="df -kh"
+alias du="du -kh"
+alias sa="alias | grep -i"
+alias type="type -a"
+alias diffu="diff --unified"
+
 # Monitor and Display
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias brightness='xrandr --output eDP-1-1 --brightness'

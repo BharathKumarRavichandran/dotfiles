@@ -44,6 +44,8 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
 1. Install `zsh` and `zsh-completions`:
 	- Install the `zsh` shell.
 	- Install `zsh-completions`.
+	- Install [antidote](https://github.com/mattmc3/antidote) for zsh plugin management, and configure [antidote](/antidote).
+	- Install [starship](https://starship.rs) for the prompt, and configure [starship](/starship).
 	- Configure [zsh](/zsh) based on your preferences.
 1. Install `rofi`:
 	- Install the `rofi` application launcher.

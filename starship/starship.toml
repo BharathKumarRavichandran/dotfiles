@@ -1,0 +1,59 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[ ](bg:#262626)$username[@](fg:red bg:#262626)$hostname[](fg:#262626 bg:blue)$directory${custom.git_open}$git_branch$git_status${custom.git_close}${custom.nogit_close}
+$character"""
+
+right_format = ""
+
+[username]
+show_always = true
+style_user = "bg:#262626 fg:blue"
+style_root = "bg:#262626 fg:blue"
+format = "[$user]($style)"
+disabled = false
+
+[hostname]
+ssh_only = false
+style = "bg:#262626 fg:green"
+format = "[$hostname]($style)"
+disabled = false
+
+[directory]
+style = "bg:blue fg:#262626"
+format = "[ $path ]($style)"
+truncation_length = 8
+truncate_to_repo = false
+
+[git_branch]
+symbol = ""
+style = "bg:#2ECC71 fg:#262626"
+format = "[ $symbol $branch ]($style)"
+
+[git_status]
+style = "bg:#2ECC71 fg:#7a0000"
+format = "[$all_status$ahead_behind ]($style)"
+
+[custom.git_open]
+command = "true"
+when = "git rev-parse --is-inside-work-tree 2>/dev/null"
+format = "[](fg:blue bg:#2ECC71)"
+
+[custom.git_close]
+command = "true"
+when = "git rev-parse --is-inside-work-tree 2>/dev/null"
+format = "[](fg:#2ECC71)"
+
+[custom.nogit_close]
+command = "true"
+when = "! git rev-parse --is-inside-work-tree 2>/dev/null"
+format = "[](fg:blue)"
+
+[cmd_duration]
+style = "bold yellow"
+min_time = 2_000
+format = "took [$duration]($style) "
+
+[character]
+success_symbol = "[❯](blue)"
+error_symbol = "[❯](red)"

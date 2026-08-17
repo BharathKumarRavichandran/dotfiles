@@ -12,10 +12,12 @@ brew "ripgrep"
 brew "fzf"
 brew "zoxide"
 brew "git-delta"
+brew "btop"
 
 # Shell
 brew "zsh"
-brew "zsh-completions"
+brew "antidote"
+brew "starship"
 brew "tmux"
 
 # Dev tooling

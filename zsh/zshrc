@@ -7,11 +7,6 @@
 
 TERM=xterm-256color
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
 # Bharath Kumar Ravichandran's Configuration
 
 ############################ IMPORTANT ########################
