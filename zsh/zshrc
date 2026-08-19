@@ -5,7 +5,10 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-TERM=xterm-256color
+# tmux sets its own TERM; don't clobber it
+if [[ -z "$TMUX" ]]; then
+  TERM=xterm-256color
+fi
 
 # Bharath Kumar Ravichandran's Configuration
 
