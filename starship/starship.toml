@@ -1,58 +1,66 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[ ](bg:#262626)$username[@](fg:red bg:#262626)$hostname[](fg:#262626 bg:blue)$directory${custom.git_open}$git_branch$git_status${custom.git_close}${custom.nogit_close}
+[ ](bg:bar)$username[@](fg:red bg:bar)$hostname[](fg:bar bg:blue)$directory$git_branch$git_state$git_status${custom.nogit_close}
 $character"""
 
-right_format = ""
+right_format = "$status$cmd_duration"
+palette = "mine"
+
+[palettes.mine]
+bar = "#262626"
+gitbg = "#2ECC71"
+gitfg = "#7a0000"
 
 [username]
 show_always = true
-style_user = "bg:#262626 fg:blue"
-style_root = "bg:#262626 fg:blue"
+style_user = "bg:bar fg:blue"
+style_root = "bg:bar fg:red"
 format = "[$user]($style)"
 disabled = false
 
 [hostname]
 ssh_only = false
-style = "bg:#262626 fg:green"
+style = "bg:bar fg:green"
 format = "[$hostname]($style)"
 disabled = false
 
 [directory]
-style = "bg:blue fg:#262626"
+style = "bg:blue fg:bar"
 format = "[ $path ]($style)"
 truncation_length = 8
 truncate_to_repo = false
+truncation_symbol = "…/"
 
 [git_branch]
+truncation_length = 24
+truncation_symbol = "…"
 symbol = ""
-style = "bg:#2ECC71 fg:#262626"
-format = "[ $symbol $branch ]($style)"
+style = "bg:gitbg fg:bar"
+format = "[](fg:blue bg:gitbg)[ $symbol $branch ]($style)"
+
+[git_state]
+style = "bg:gitbg fg:gitfg"
+format = '[\($state $progress_current/$progress_total\) ]($style)'
 
 [git_status]
-style = "bg:#2ECC71 fg:#7a0000"
-format = "[$all_status$ahead_behind ]($style)"
-
-[custom.git_open]
-command = "true"
-when = "git rev-parse --is-inside-work-tree 2>/dev/null"
-format = "[](fg:blue bg:#2ECC71)"
-
-[custom.git_close]
-command = "true"
-when = "git rev-parse --is-inside-work-tree 2>/dev/null"
-format = "[](fg:#2ECC71)"
+style = "bg:gitbg fg:gitfg"
+format = "[](fg:gitbg)"
 
 [custom.nogit_close]
-command = "true"
 when = "! git rev-parse --is-inside-work-tree 2>/dev/null"
 format = "[](fg:blue)"
+
+[status]
+disabled = false
+symbol = "✖"
+style = "bold red"
+format = "[$symbol $status]($style)"
 
 [cmd_duration]
 style = "bold yellow"
 min_time = 2_000
-format = "took [$duration]($style) "
+format = " took [$duration]($style)"
 
 [character]
 success_symbol = "[❯](blue)"

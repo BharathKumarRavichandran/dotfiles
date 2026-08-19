@@ -54,9 +54,6 @@ alias vimrc='vi ~/.vimrc'
 alias bashrc='vi ~/.bashrc'
 alias zshrc='vi ~/.zshrc'
 
-# Loaders
-alias loadbash='source ~/.bashrc'
-
 # Typos
 alias cim="vim"
 alias bim="vim"
@@ -83,7 +80,7 @@ alias pfr="pip freeze >! requirements.txt"
 alias pit="pip install --editable ."
 alias srcenv="source env/bin/activate"
 alias srcvenv="source venv/bin/activate"
-alias py="python"
+alias py="python3"
 alias py3="python3"
 alias pym="python3 manage.py"
 
@@ -91,6 +88,7 @@ alias pym="python3 manage.py"
 alias c="code ."
 
 # tmux
+alias t="tmux"
 alias ts="tmux-sessionizer"
 
 # Docker
