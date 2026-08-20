@@ -3,6 +3,8 @@ tap "jorgelbg/tap"
 # Core tools
 brew "git"
 brew "macvim"
+brew "neovim"
+brew "tree-sitter-cli"
 brew "gnupg"
 brew "pinentry-mac"
 brew "jorgelbg/tap/pinentry-touchid"

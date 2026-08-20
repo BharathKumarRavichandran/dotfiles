@@ -11,6 +11,7 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
 ## Setting up the workspace
 1. Install and set up [git](/git).
 1. Install and set up [vim](/vim).
+1. Install `neovim`, `tree-sitter-cli`, `base-devel` and `xclip` (or `wl-clipboard` on Wayland), then set up [nvim](/nvim).
 1. Install `brave-browser`.
 1. Install the TLDR client for simplified command-line help - `tldr`.
 1. Install `playerctl` and `volumeicon`.

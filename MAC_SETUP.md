@@ -12,6 +12,7 @@ git clone --recurse-submodules https://github.com/BharathKumarRavichandran/dotfi
 1. Install packages: `./configure.sh homebrew` (see [homebrew/Brewfile](/homebrew/Brewfile) for what's included, and add anything missing there).
 1. Set up [git](/git).
 1. Set up [vim](/vim).
+1. Set up [neovim](/nvim).
 1. Configure [bat](/bat).
 1. Configure [iterm2](/iterm2) based on your preferences.
 1. Configure [zsh](/zsh) based on your preferences.

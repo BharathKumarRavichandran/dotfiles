@@ -1,7 +1,6 @@
 [user]
 	email = bharathkumarravichandran@gmail.com
 	name = BharathKumarRavichandran
-	editor = vim
 	signingkey = A711450E8E510AD9!
 [credential]
 	helper = cache --timeout 72000

@@ -5,7 +5,8 @@ alias die="figlet 'Goodbye!' && poweroff"
 alias killprocess='fuser -k 3000/tcp'
 alias fucking="sudo"
 alias trx="tar xvf"
-alias vi="vim"
+alias vi="${EDITOR:-vim}"
+(( $+commands[nvim] )) && alias vim="nvim"
 alias dirdu="du -h -d 1 ."
 alias mvup="find . -mindepth 2 -type f -print -exec mv -n {} . \;"
 alias delemptydirs="find . -type d -empty -delete"
@@ -51,12 +52,13 @@ alias tree='eza -T --icons' # tree view
 
 # Shortcuts to vimrc and bashrc
 alias vimrc='vi ~/.vimrc'
+alias nvimrc='vi ~/.config/nvim/init.lua'
 alias bashrc='vi ~/.bashrc'
 alias zshrc='vi ~/.zshrc'
 
 # Typos
-alias cim="vim"
-alias bim="vim"
+alias cim="${EDITOR:-vim}"
+alias bim="${EDITOR:-vim}"
 alias pytohn="python"
 
 # General locations

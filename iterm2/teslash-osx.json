@@ -1,9 +1,10 @@
 {
   "Profiles" : [
     {
-      "Guid" : "BE0EE6F1-9E63-4C14-BE47-76AB4C9B6974",
+      "Use Separate Colors for Light and Dark Mode" : false,
       "Rewritable" : true,
-      "Name" : "teslash-osx"
+      "Name" : "teslash-osx",
+      "Guid" : "BE0EE6F1-9E63-4C14-BE47-76AB4C9B6974"
     }
   ]
 }

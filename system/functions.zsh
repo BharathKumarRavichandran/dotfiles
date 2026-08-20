@@ -41,9 +41,9 @@ backup_dotfile()
     if [[ -e "$file" ]]; then
         if [[ -L "$file" ]]; then
             local target=$(readlink -f "$file")
-            cp -L "$target" "$backup_dir/"
+            cp -RL "$target" "$backup_dir/"
         else
-            cp "$file" "$backup_dir/"
+            cp -R "$file" "$backup_dir/"
         fi
     fi
 }
