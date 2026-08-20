@@ -13,6 +13,6 @@ fi
 
 # Custom Environment Variables
 export DOTDIR=~/.dotfiles
-export DOTDIR_BACKUP=~/.dotfiles-backup
+export DOTDIR_BACKUP="${DOTDIR_BACKUP:-$HOME/.dotfiles-backup}"
 
 [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

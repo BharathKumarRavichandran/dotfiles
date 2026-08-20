@@ -1,8 +1,11 @@
+tap "jorgelbg/tap"
+
 # Core tools
 brew "git"
-brew "vim"
+brew "macvim"
 brew "gnupg"
 brew "pinentry-mac"
+brew "jorgelbg/tap/pinentry-touchid"
 
 # Modern CLI replacements
 brew "bat"
@@ -13,9 +16,10 @@ brew "fzf"
 brew "zoxide"
 brew "git-delta"
 brew "btop"
+brew "tealdeer"
+brew "xh"
 
 # Shell
-brew "zsh"
 brew "antidote"
 brew "starship"
 brew "tmux"
@@ -29,6 +33,7 @@ cask "font-source-code-pro"
 cask "font-fira-code"
 cask "font-iosevka"
 cask "font-iosevka-nerd-font"
+cask "font-powerline-symbols"
 
 # Apps
 cask "brave-browser"
@@ -39,3 +44,4 @@ cask "visual-studio-code"
 cask "postman"
 cask "dbeaver-community"
 cask "intellij-idea-ce"
+cask "claude-code"

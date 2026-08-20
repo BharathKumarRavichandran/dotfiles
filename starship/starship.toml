@@ -48,7 +48,7 @@ style = "bg:gitbg fg:gitfg"
 format = "[](fg:gitbg)"
 
 [custom.nogit_close]
-when = "! git rev-parse --is-inside-work-tree 2>/dev/null"
+when = 'd=$PWD; while [ -n "$d" ]; do [ -e "$d/.git" ] && exit 1; d=${d%/*}; done; exit 0'
 format = "[](fg:blue)"
 
 [status]

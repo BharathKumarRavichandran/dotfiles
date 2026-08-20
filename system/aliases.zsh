@@ -6,8 +6,8 @@ alias killprocess='fuser -k 3000/tcp'
 alias fucking="sudo"
 alias trx="tar xvf"
 alias vi="vim"
-alias dirdu="du -h . --max-depth=1"
-alias mvup="find . -mindepth 1 -type f -print -exec mv {} . \;"
+alias dirdu="du -h -d 1 ."
+alias mvup="find . -mindepth 2 -type f -print -exec mv -n {} . \;"
 alias delemptydirs="find . -type d -empty -delete"
 if [[ "$OSTYPE" != "darwin"* ]]; then
     alias ports="sudo netstat -tulpn | grep LISTEN"

@@ -2,6 +2,8 @@
 
 ## Installation
 - Download and install iterm2
-- Import profile and choose `teslash-osx.json`
-- Import color schemes and apply `UltraViolent`.
+- Run `./configure.sh iterm2`
+    - Color schemes are only imported when iterm2 is not running, so run it from Terminal.app
+- Set `teslash-osx` as the default profile and apply `UltraViolent`
+    - Delete any older hand-imported `teslash-osx` profile, otherwise it shows up twice
     - More themes [here](https://iterm2colorschemes.com/)

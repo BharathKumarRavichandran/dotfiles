@@ -9,6 +9,16 @@
 	defaultBranch = main
 [push]
 	autoSetupRemote = true
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[rerere]
+	enabled = true
+[merge]
+	conflictstyle = zdiff3
+[diff]
+	algorithm = histogram
 [commit]
 	gpgsign = true
 [gpg]
