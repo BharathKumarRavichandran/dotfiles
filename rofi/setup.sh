@@ -1,16 +1,3 @@
 #!/usr/bin/env zsh
 
-# Backup existing rofi configuration
-echo "Backing up existing rofi configuration..."
-today=$(get_current_datetime)
-backup_dir=$DOTDIR_BACKUP/rofi/$today
-mkdir -p "$backup_dir"
-
-# Backup and symlink rofi configuration
-backup_dotfile ~/.config/rofi/config.rasi "$backup_dir"
-
-# Create symbolic links for rofi configuration
-echo "Creating rofi symlinks..."
-mkdir -p ~/.config/rofi
-ln -sf "$DOTDIR/rofi/config.rasi" ~/.config/rofi/config.rasi
-echo "Done!"
+link_dotfile "$DOTDIR/rofi/config.rasi" "$HOME/.config/rofi/config.rasi" rofi

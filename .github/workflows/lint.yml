@@ -8,18 +8,56 @@ jobs:
   shellcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: shellcheck bin/ scripts and githooks
-        run: shellcheck bin/* .githooks/pre-commit
+      - uses: actions/checkout@v6
+      - name: ShellCheck maintained shell scripts
+        run: >-
+          shellcheck bin/* .githooks/pre-commit conky/conky-start.sh
+          polybar/launch.sh polybar/preview.sh polybar/scripts/launcher.sh
+          polybar/scripts/powermenu.sh polybar/scripts/style-switch.sh
+          polybar/scripts/styles.sh polybar/scripts/updates.sh
 
   zsh-syntax:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Install zsh
         run: sudo apt-get update && sudo apt-get install -y zsh
-      - name: Syntax-check configure.sh and setup.sh scripts
+      - name: Syntax-check all Zsh files
         run: |
-          for f in configure.sh */setup.sh; do
+          while IFS= read -r -d '' f; do
             zsh -n "$f"
-          done
+          done < <(git ls-files -z '*.zsh' 'configure.sh' '*/setup.sh' '.githooks/setup.sh' 'tests/setup-smoke.sh')
+      - name: Smoke-test safe linking and backups
+        run: zsh tests/setup-smoke.sh
+      - name: Reject autoloaded test files
+        run: test -z "$(git ls-files 'tests/*.zsh')"
+
+  data-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Validate JSON files
+        run: |
+          while IFS= read -r -d '' f; do
+            jq empty "$f"
+          done < <(git ls-files -z '*.json' ':!vscode/settings.json' ':!vscode/keybindings.json')
+      - name: Reject broken tracked symlinks
+        run: |
+          while IFS= read -r -d '' entry; do
+            metadata=${entry%%$'\t'*}
+            file=${entry#*$'\t'}
+            if [[ $metadata == 120000\ * && ! -e $file ]]; then
+              echo "Broken symlink: $file" >&2
+              exit 1
+            fi
+          done < <(git ls-files -s -z)
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,20 +1,19 @@
 #!/usr/bin/env zsh
 
-# Backup existing tmux configuration
-echo "Backing up existing tmux configuration..."
-today=$(get_current_datetime)
-backup_dir=$DOTDIR_BACKUP/tmux/$today
-mkdir -p "$backup_dir"
+link_dotfile "$DOTDIR/tmux/tmux.conf" "$HOME/.tmux.conf" tmux
 
-backup_dotfile ~/.tmux.conf "$backup_dir"
+if is_dry_run; then
+    echo "Would install TPM and tmux plugins"
+    return 0
+fi
 
-# Create symbolic links for tmux configuration
-echo "Creating tmux symlinks..."
-ln -sf "$DOTDIR/tmux/tmux.conf" ~/.tmux.conf
+if [[ ! -e "$HOME/.tmux/plugins/tpm" ]]; then
+    if [[ -L "$HOME/.tmux/plugins/tpm" ]]; then
+        echo "TPM path is a broken symlink: $HOME/.tmux/plugins/tpm" >&2
+        return 1
+    fi
+    mkdir -p "$HOME/.tmux/plugins"
+    git clone --depth=1 https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
 
-# tpm
-[[ ! -a ~/.tmux/plugins/tpm ]] && git clone --depth=1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# install plugins
-~/.tmux/plugins/tpm/scripts/install_plugins.sh
-echo "Done!"
+"$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"

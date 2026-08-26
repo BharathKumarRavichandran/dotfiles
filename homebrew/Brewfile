@@ -7,7 +7,7 @@ brew "neovim"
 brew "tree-sitter-cli"
 brew "gnupg"
 brew "pinentry-mac"
-brew "jorgelbg/tap/pinentry-touchid"
+brew "jorgelbg/tap/pinentry-touchid", trusted: true
 
 # Modern CLI replacements
 brew "bat"

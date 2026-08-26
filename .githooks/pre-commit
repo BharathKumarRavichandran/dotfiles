@@ -2,26 +2,50 @@
 
 set -e
 
-staged=$(git diff --cached --name-only --diff-filter=ACM)
 status=0
+sh_files=()
+zsh_files=()
+json_files=()
 
-sh_files=$(grep -E '^bin/' <<<"$staged" || true)
-if [[ -n "$sh_files" ]]; then
+while IFS= read -r -d '' file; do
+    case $file in
+        bin/*|conky/conky-start.sh|polybar/launch.sh|polybar/preview.sh|polybar/scripts/launcher.sh|polybar/scripts/powermenu.sh|polybar/scripts/style-switch.sh|polybar/scripts/styles.sh|polybar/scripts/updates.sh)
+            sh_files+=("$file")
+            ;;
+        configure.sh|*/setup.sh|tests/setup-smoke.sh|*.zsh)
+            zsh_files+=("$file")
+            ;;
+        *.json)
+            [[ $file == vscode/settings.json || $file == vscode/keybindings.json ]] || json_files+=("$file")
+            ;;
+    esac
+done < <(git diff --cached --name-only --diff-filter=ACM -z)
+
+if (( ${#sh_files[@]} )); then
     if command -v shellcheck >/dev/null; then
-        echo "Running shellcheck on staged bin/ scripts..."
-        # shellcheck disable=SC2086
-        shellcheck $sh_files || status=1
+        echo "Running ShellCheck..."
+        shellcheck "${sh_files[@]}" || status=1
     else
-        echo "shellcheck not installed, skipping (brew install shellcheck)" >&2
+        echo "shellcheck not found, skipping shell checks" >&2
     fi
 fi
 
-zsh_files=$(grep -E '(^configure\.sh$|/setup\.sh$)' <<<"$staged" || true)
-if [[ -n "$zsh_files" ]]; then
-    echo "Checking zsh syntax on staged setup scripts..."
-    while IFS= read -r f; do
+if (( ${#zsh_files[@]} )); then
+    echo "Checking Zsh syntax..."
+    for f in "${zsh_files[@]}"; do
         zsh -n "$f" || status=1
-    done <<<"$zsh_files"
+    done
+fi
+
+if (( ${#json_files[@]} )); then
+    if command -v jq >/dev/null; then
+        echo "Validating staged JSON files..."
+        for f in "${json_files[@]}"; do
+            jq empty "$f" || status=1
+        done
+    else
+        echo "jq not found, skipping JSON validation" >&2
+    fi
 fi
 
 exit $status

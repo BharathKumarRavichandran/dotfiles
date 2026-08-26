@@ -1,16 +1,3 @@
 #!/usr/bin/env zsh
 
-# Backup existing Dunst configuration
-echo "Backing up existing Dunst configuration..."
-today=$(get_current_datetime)
-backup_dir=$DOTDIR_BACKUP/dunst/$today
-mkdir -p "$backup_dir"
-
-# Backup and symlink Dunst configuration
-backup_dotfile ~/.config/dunst/dunstrc "$backup_dir"
-
-# Create symbolic links for Dunst configuration
-echo "Creating Dunst symlinks..."
-mkdir -p ~/.config/dunst
-ln -sf "$DOTDIR/dunst/dunstrc" ~/.config/dunst/dunstrc
-echo "Done!"
+link_dotfile "$DOTDIR/dunst/dunstrc" "$HOME/.config/dunst/dunstrc" dunst

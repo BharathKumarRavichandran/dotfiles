@@ -5,6 +5,11 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
 	return 0
 fi
 
+if is_dry_run; then
+	echo "Would back up and import Rectangle preferences"
+	return 0
+fi
+
 if [[ ! -d /Applications/Rectangle.app ]]; then
 	echo "Rectangle is not installed. Install it first: ./configure.sh homebrew" >&2
 	return 1
@@ -15,10 +20,8 @@ if ! command -v python3 >/dev/null; then
 	return 1
 fi
 
-# Backup existing Rectangle preferences
 echo "Backing up existing Rectangle preferences..."
-today=$(get_current_datetime)
-backup_dir=$DOTDIR_BACKUP/rectangle/$today
+backup_dir=$(dotfile_backup_dir rectangle)
 mkdir -p "$backup_dir" || return 1
 if ! defaults export com.knollsoft.Rectangle "$backup_dir/com.knollsoft.Rectangle.plist"; then
 	echo "Could not back up Rectangle preferences, aborting." >&2
@@ -50,5 +53,3 @@ if (( import_status[1] || import_status[2] || import_status[3] )); then
 	echo "Failed to import Rectangle configuration. Backup: $backup_dir" >&2
 	return 1
 fi
-
-echo "Done!"

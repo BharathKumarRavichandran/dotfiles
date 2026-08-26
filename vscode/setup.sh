@@ -1,36 +1,29 @@
 #!/usr/bin/env zsh
 
-# Backup existing VS Code configurations
-echo "Backing up existing VS Code configurations..."
-today=$(get_current_datetime)
-backup_dir=$DOTDIR_BACKUP/vscode/$today
-mkdir -p "$backup_dir"
-
-# Determine the correct VS Code User directory for this OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
     VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     VSCODE_USER_DIR="$HOME/.config/Code/User"
+else
+    echo "Unsupported platform for VS Code setup: $OSTYPE" >&2
+    return 1
 fi
 
-# Backup and symlink VS Code configurations
-backup_dotfile "$VSCODE_USER_DIR/settings.json" "$backup_dir"
-backup_dotfile "$VSCODE_USER_DIR/keybindings.json" "$backup_dir"
+link_dotfile "$DOTDIR/vscode/settings.json" "$VSCODE_USER_DIR/settings.json" vscode
+link_dotfile "$DOTDIR/vscode/keybindings.json" "$VSCODE_USER_DIR/keybindings.json" vscode
 
-# Create symbolic links for VS Code configurations
-echo "Creating VS Code symlinks..."
-mkdir -p "$VSCODE_USER_DIR"
-ln -sf "$DOTDIR/vscode/settings.json" "$VSCODE_USER_DIR/settings.json"
-ln -sf "$DOTDIR/vscode/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
+if is_dry_run; then
+    echo "Would install VS Code extensions"
+    return 0
+fi
 
-# Install extensions
-if command -v code >/dev/null; then
+if ! command -v code >/dev/null; then
+    echo "code CLI not found, skipping extension install" >&2
+elif ! command -v jq >/dev/null; then
+    echo "jq not found, skipping extension install" >&2
+else
     echo "Installing VS Code extensions..."
     jq -r '.[] | "\(.publisher).\(.name)"' "$DOTDIR/vscode/extensions.json" | while read -r extension; do
         code --install-extension "$extension"
     done
-else
-    echo "code CLI not found, skipping extension install" >&2
 fi
-
-echo "Done!"

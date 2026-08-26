@@ -1,18 +1,4 @@
 #!/usr/bin/env zsh
 
-# Backup existing kitty configuration
-echo "Backing up existing kitty configuration..."
-today=$(get_current_datetime)
-backup_dir=$DOTDIR_BACKUP/kitty/$today
-mkdir -p "$backup_dir"
-
-# Backup and symlink kitty configurations
-backup_dotfile ~/.config/kitty/kitty.conf "$backup_dir"
-backup_dotfile ~/.config/kitty/colors.conf "$backup_dir"
-
-# Create symbolic links for kitty configurations
-echo "Creating kitty symlinks..."
-mkdir -p ~/.config/kitty
-ln -sf "$DOTDIR/kitty/kitty.conf" ~/.config/kitty/kitty.conf
-ln -sf "$DOTDIR/kitty/colors.conf" ~/.config/kitty/colors.conf
-echo "Done!"
+link_dotfile "$DOTDIR/kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf" kitty
+link_dotfile "$DOTDIR/kitty/colors.conf" "$HOME/.config/kitty/colors.conf" kitty
