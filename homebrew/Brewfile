@@ -29,6 +29,10 @@ brew "tmux"
 # Dev tooling
 brew "mise"
 brew "shellcheck"
+brew "shfmt"
+brew "stylua"
+brew "jq"
+brew "yq"
 
 # Fonts
 cask "font-source-code-pro"

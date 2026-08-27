@@ -106,7 +106,7 @@ return {
                 typescript = { "prettier" },
                 yaml = { "prettier" },
             },
-            format_on_save = { timeout_ms = 1000, lsp_format = "fallback" },
+            format_on_save = { timeout_ms = 3000, lsp_format = "fallback" },
         },
     },
 }
