@@ -11,7 +11,7 @@ if is_dry_run; then
 fi
 
 if [[ ! -d /Applications/Rectangle.app ]]; then
-	echo "Rectangle is not installed. Install it first: ./configure.sh homebrew" >&2
+	echo "Rectangle is not installed. Install it first: ./install.sh rectangle" >&2
 	return 1
 fi
 

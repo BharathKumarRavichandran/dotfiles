@@ -1,0 +1,44 @@
+#!/usr/bin/env zsh
+
+DOTDIR=${DOTDIR:-${0:A:h:h}}
+failures=()
+
+run_step() {
+    local label=$1
+    shift
+    print -- "==> $label"
+    "$@" || failures+=("$label")
+}
+
+if [[ -f "$DOTDIR/antidote/plugins.txt" ]]; then
+    for antidote_script in \
+        "${XDG_DATA_HOME:-$HOME/.local/share}/antidote/antidote.zsh" \
+        /opt/homebrew/opt/antidote/share/antidote/antidote.zsh \
+        /usr/local/opt/antidote/share/antidote/antidote.zsh \
+        /usr/share/zsh/site-functions/antidote.zsh \
+        /usr/share/antidote/antidote.zsh
+    do
+        [[ -f $antidote_script ]] && source "$antidote_script" && break
+    done
+    if (( $+functions[antidote] )); then
+        print -- "==> Zsh plugins"
+        antidote update || failures+=("Zsh plugins")
+        antidote bundle <"$DOTDIR/antidote/plugins.txt" >|"${ZDOTDIR:-$HOME}/.zsh_plugins.zsh" \
+            || failures+=("Zsh plugin bundle")
+    fi
+fi
+
+if [[ -d "$HOME/.tmux/plugins/tpm" ]]; then
+    run_step "tmux plugins" "$HOME/.tmux/plugins/tpm/bin/update_plugins" all
+fi
+
+if (( $+commands[nvim] )); then
+    run_step "Neovim plugins" nvim --headless "+Lazy! sync" +qa
+fi
+
+if (( ${#failures} )); then
+    print -u2 -- "Failed updates: ${failures[*]}"
+    exit 1
+fi
+
+print -- "Dotfiles plugins are up to date."

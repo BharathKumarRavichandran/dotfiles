@@ -1,1 +1,1 @@
-eval "$(starship init zsh)"
+(( $+commands[starship] )) && eval "$(starship init zsh)"

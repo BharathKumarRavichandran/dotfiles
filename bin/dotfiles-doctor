@@ -1,0 +1,54 @@
+#!/usr/bin/env zsh
+
+DOTDIR=${DOTDIR:-${0:A:h:h}}
+problems=0
+
+problem() {
+    print -u2 -- "- $*"
+    (( problems += 1 ))
+}
+
+[[ -d "$DOTDIR/.git" ]] || problem "$DOTDIR is not a Git worktree"
+
+for command in git zsh; do
+    (( $+commands[$command] )) || problem "$command is not installed"
+done
+
+(( $+commands[delta] )) || problem "delta is not installed (required by Git config)"
+
+if [[ ! -f "$HOME/.gitconfig.local" ]]; then
+    problem "Git identity is missing: ~/.gitconfig.local"
+else
+    git config --file "$HOME/.gitconfig.local" user.name >/dev/null || problem "Git user.name is missing"
+    git config --file "$HOME/.gitconfig.local" user.email >/dev/null || problem "Git user.email is missing"
+fi
+
+while IFS= read -r -d '' link; do
+    [[ -e $link ]] || problem "broken managed link: $link"
+done < <(find "$HOME" -maxdepth 3 -type l -lname "$DOTDIR/*" -print0 2>/dev/null)
+
+antidote_found=0
+for antidote_file in \
+    "${XDG_DATA_HOME:-$HOME/.local/share}/antidote/antidote.zsh" \
+    /opt/homebrew/opt/antidote/share/antidote/antidote.zsh \
+    /usr/local/opt/antidote/share/antidote/antidote.zsh \
+    /usr/share/zsh/site-functions/antidote.zsh \
+    /usr/share/antidote/antidote.zsh
+do
+    [[ -f $antidote_file ]] && antidote_found=1
+done
+(( antidote_found )) || problem "Antidote is not installed"
+
+[[ -x "$HOME/.tmux/plugins/tpm/tpm" ]] || problem "TPM is not installed"
+
+if (( $+commands[nvim] )); then
+    nvim --headless '+lua require("config.options")' +qa >/dev/null 2>&1 \
+        || problem "Neovim configuration failed to start"
+fi
+
+if (( problems )); then
+    print -u2 -- "$problems problem(s) found"
+    exit 1
+fi
+
+print -- "dotfiles: ok"

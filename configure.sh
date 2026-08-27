@@ -10,7 +10,7 @@ source "$DOTDIR/system/functions.zsh"
 
 typeset -A profiles
 profiles[cli]='git zsh starship tmux vim nvim'
-profiles[macos]='homebrew git zsh starship tmux nvim kitty iterm2 rectangle vscode'
+profiles[macos]='git zsh starship tmux nvim kitty iterm2 rectangle vscode'
 profiles[linux-desktop]='git zsh starship tmux nvim kitty i3 xserver picom polybar rofi dunst vscode'
 
 available_tools=()
@@ -22,13 +22,33 @@ available_tools=( ${(ou)available_tools} )
 usage() {
     cat <<EOF
 Usage: $program [--dry-run] <tool>...
-       $program [--dry-run] --profile <cli|macos|linux-desktop>
+       $program [--dry-run] --profile <cli|macos|linux-desktop> [--all]
        $program [--dry-run] --all
        $program --list
 EOF
 }
 
+select_tools() {
+    local selection
+    local -a tools
+    tools=("$@")
+
+    if (( $+commands[fzf] )); then
+        print -l -- $tools | fzf --multi --prompt='configure> '
+        return
+    fi
+
+    print -u2 -- "Available tools: ${tools[*]}"
+    print -u2 -n -- "Tools to configure (space-separated, blank to cancel): "
+    read -r selection </dev/tty
+    [[ -n $selection ]] && print -l -- ${(z)selection}
+}
+
 requested=()
+profile_tools=()
+profile_name=
+configure_all=0
+
 while (( $# > 0 )); do
     case $1 in
         --dry-run)
@@ -39,7 +59,7 @@ while (( $# > 0 )); do
             exit 0
             ;;
         --all)
-            requested+=( $available_tools )
+            configure_all=1
             ;;
         --profile)
             shift
@@ -48,7 +68,9 @@ while (( $# > 0 )); do
                 usage >&2
                 exit 1
             fi
-            requested+=( ${(z)profiles[$1]} )
+            [[ -z $profile_name ]] || { echo "Only one profile can be selected." >&2; exit 1; }
+            profile_name=$1
+            profile_tools=( ${(z)profiles[$1]} )
             ;;
         --help|-h)
             usage
@@ -66,12 +88,21 @@ while (( $# > 0 )); do
     shift
 done
 
-requested=( ${(u)requested} )
-if (( ${#requested} == 0 )); then
-    usage >&2
-    exit 1
+if [[ -n $profile_name ]]; then
+    candidates=( ${(u)profile_tools} ${(u)requested} )
+    if (( configure_all )); then
+        requested=( $candidates )
+    else
+        requested=("${(@f)$(select_tools "${candidates[@]}")}")
+    fi
+elif (( configure_all )); then
+    requested=( $available_tools )
+elif (( ${#requested} == 0 )); then
+    requested=("${(@f)$(select_tools "${available_tools[@]}")}")
 fi
 
+(( ${#requested} )) || exit 0
+requested=( ${(u)requested} )
 failed=()
 first_tool=1
 for tool in $requested; do

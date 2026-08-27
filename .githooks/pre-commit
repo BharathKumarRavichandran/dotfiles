@@ -6,9 +6,14 @@ status=0
 sh_files=()
 zsh_files=()
 json_files=()
+validate_repo=0
 
 while IFS= read -r -d '' file; do
+    [[ $file == configure.sh || $file == homebrew/Brewfile.* || $file == packages/*.lst ]] && validate_repo=1
     case $file in
+        bin/dotfiles-doctor|bin/dotfiles-update|packages/install.sh|install.sh|bootstrap.sh|tests/repo-validation.sh)
+            zsh_files+=("$file")
+            ;;
         bin/*|conky/conky-start.sh|polybar/launch.sh|polybar/preview.sh|polybar/scripts/launcher.sh|polybar/scripts/powermenu.sh|polybar/scripts/style-switch.sh|polybar/scripts/styles.sh|polybar/scripts/updates.sh)
             sh_files+=("$file")
             ;;
@@ -46,6 +51,11 @@ if (( ${#json_files[@]} )); then
     else
         echo "jq not found, skipping JSON validation" >&2
     fi
+fi
+
+if (( validate_repo )); then
+    echo "Validating profiles and package manifests..."
+    zsh tests/repo-validation.sh || status=1
 fi
 
 exit $status
