@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Move files to the platform's recoverable trash.
+
+set -e
+
+if [[ $# -eq 0 ]]; then
+    echo "Usage: trash <file ...>" >&2
+    exit 2
+fi
+
+for path in "$@"; do
+    if [[ ! -e $path && ! -L $path ]]; then
+        echo "trash: path does not exist: $path" >&2
+        exit 1
+    fi
+done
+
+if [[ $(uname -s) == Darwin ]]; then
+    paths=()
+    for path in "$@"; do
+        paths+=("$(cd "$(dirname "$path")" && pwd -P)/$(basename "$path")")
+    done
+    # Finder handles name collisions and keeps its Trash metadata consistent.
+    exec osascript - "${paths[@]}" <<'APPLESCRIPT'
+on run argv
+    tell application "Finder"
+        repeat with itemPath in argv
+            delete POSIX file itemPath
+        end repeat
+    end tell
+end run
+APPLESCRIPT
+elif command -v gio >/dev/null 2>&1; then
+    exec gio trash -- "$@"
+elif command -v trash-put >/dev/null 2>&1; then
+    exec trash-put -- "$@"
+else
+    echo "trash: install gio or trash-cli to enable recoverable deletion" >&2
+    exit 1
+fi

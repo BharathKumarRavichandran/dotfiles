@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-#
 # Fuzzy-pick a project dir and jump to (or create) its tmux session.
-#
 set -e
 
 search_paths=(

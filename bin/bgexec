@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Run a command silently in the background and detach it from the shell.
 
 if [[ $# -eq 0 ]]; then
     echo "Usage: bgexec <command> [args...]" >&2
@@ -12,4 +13,4 @@ then
 fi
 
 echo "Opening $1..."
-"$@" </dev/null >/dev/null 2>&1 & disown
+nohup "$@" </dev/null >/dev/null 2>&1 &

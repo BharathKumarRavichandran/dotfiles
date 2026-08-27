@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Extract a supported archive into a destination directory.
+
+set -e
+
+usage() {
+    echo "Usage: extract <archive> [destination]" >&2
+}
+
+if [[ $# -lt 1 || $# -gt 2 ]]; then
+    usage
+    exit 2
+fi
+
+archive=$1
+destination=${2:-.}
+
+if [[ ! -f $archive ]]; then
+    echo "extract: not a file: $archive" >&2
+    exit 1
+fi
+
+archive=$(cd "$(dirname "$archive")" && pwd)/$(basename "$archive")
+archive_lower=$(printf '%s' "$archive" | tr '[:upper:]' '[:lower:]')
+
+case $archive_lower in
+    *.tar.gz|*.tgz|*.tar.bz2|*.tbz2|*.tar.xz|*.txz|*.tar.zst|*.tzst|*.tar|*.zip|*.7z|*.rar|*.gz|*.bz2|*.xz|*.zst) ;;
+    *)
+        echo "extract: unsupported archive type: $archive" >&2
+        exit 1
+        ;;
+esac
+
+mkdir -p "$destination"
+
+case $archive_lower in
+    *.tar.gz|*.tgz) tar -xzf "$archive" -C "$destination" ;;
+    *.tar.bz2|*.tbz2) tar -xjf "$archive" -C "$destination" ;;
+    *.tar.xz|*.txz) tar -xJf "$archive" -C "$destination" ;;
+    *.tar.zst|*.tzst) tar --zstd -xf "$archive" -C "$destination" ;;
+    *.tar) tar -xf "$archive" -C "$destination" ;;
+    *.zip) unzip "$archive" -d "$destination" ;;
+    *.7z) 7z x "$archive" "-o$destination" ;;
+    *.rar) unrar x "$archive" "$destination/" ;;
+    *)
+        name=$(basename "$archive")
+        output="$destination/${name%.*}"
+        temporary=$(mktemp "$destination/.extract.XXXXXX")
+        trap 'rm -f "$temporary"' EXIT HUP INT TERM
+        case $archive_lower in
+            *.gz) gzip -dc "$archive" > "$temporary" ;;
+            *.bz2) bzip2 -dc "$archive" > "$temporary" ;;
+            *.xz) xz -dc "$archive" > "$temporary" ;;
+            *.zst) zstd -dc "$archive" > "$temporary" ;;
+        esac
+        mv "$temporary" "$output"
+        trap - EXIT HUP INT TERM
+        ;;
+esac

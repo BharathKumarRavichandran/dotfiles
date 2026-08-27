@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Show the process listening on a TCP or UDP port.
+
+set -e
+
+if [[ $# -ne 1 || ! $1 =~ ^[0-9]+$ || $1 -lt 1 || $1 -gt 65535 ]]; then
+    echo "Usage: port-process <port>" >&2
+    exit 2
+fi
+
+port=$1
+
+if command -v lsof >/dev/null 2>&1; then
+    output=$(lsof -nP -iTCP:"$port" -sTCP:LISTEN -iUDP:"$port" 2>/dev/null || true)
+    if [[ -z $output ]]; then
+        echo "No process is using port $port" >&2
+        exit 1
+    fi
+    printf '%s\n' "$output"
+elif command -v ss >/dev/null 2>&1; then
+    if ! ss -lntup "sport = :$port" | awk '{ print } NR > 1 { found = 1 } END { exit !found }'; then
+        echo "No process is using port $port (root privileges may be needed for process details)" >&2
+        exit 1
+    fi
+else
+    echo "port-process: lsof or ss is required" >&2
+    exit 1
+fi

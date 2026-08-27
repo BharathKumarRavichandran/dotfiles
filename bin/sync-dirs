@@ -1,35 +1,46 @@
 #!/bin/bash
+# Synchronize the contents of one directory into another with rsync.
+
+set -e
 
 if [ "$#" -lt 2 ]; then
-    echo "Usage: $0 [rsync_options...] <source_dir> <destination_dir>"
+    echo "Usage: sync-dirs [rsync_options...] <source_dir> <destination_dir>" >&2
+    exit 2
+fi
+
+args=("$@")
+source_dir=${args[$# - 2]}
+destination_dir=${args[$# - 1]}
+options=("${args[@]:0:$# - 2}")
+
+if [ ! -d "$source_dir" ]; then
+    echo "sync-dirs: source is not a directory: $source_dir" >&2
     exit 1
 fi
 
-# macOS ships bash 3.2 as /bin/bash (no negative array indices), so this
-# sticks to positional-parameter slicing rather than "${array[-1]}".
-# shellcheck disable=SC2124
-SRC="${@: -2:1}"
-# shellcheck disable=SC2124
-DST="${@: -1}"
-OPTIONS=("${@:1:$(($#-2))}")
-
-if [ ! -d "$SRC" ]; then
-    echo "Error: Source directory does not exist: $SRC"
+if [ -e "$destination_dir" ] && [ ! -d "$destination_dir" ]; then
+    echo "sync-dirs: destination is not a directory: $destination_dir" >&2
     exit 1
 fi
 
-if [ ! -d "$DST" ]; then
-    echo "Destination directory does not exist. Creating: $DST"
-    mkdir -p "$DST" || exit 1
+mkdir -p "$destination_dir"
+source_dir=$(cd -- "$source_dir" && pwd -P)
+destination_dir=$(cd -- "$destination_dir" && pwd -P)
+
+if [[ $source_dir == / || $destination_dir == / ||
+      $source_dir == "$destination_dir" ||
+      $source_dir == "$destination_dir/"* ||
+      $destination_dir == "$source_dir/"* ]]; then
+    echo "sync-dirs: source and destination must not overlap" >&2
+    exit 1
 fi
 
 echo "Syncing:"
-echo "  Source:      $SRC"
-echo "  Destination: $DST"
-echo "  Options:     -avh --progress ${OPTIONS[*]}"
+echo "  Source:      $source_dir"
+echo "  Destination: $destination_dir"
 echo
 
-if rsync -avh --progress "${OPTIONS[@]}" -- "$SRC/" "$DST/"; then
+if rsync -avh --progress "${options[@]}" -- "$source_dir/" "$destination_dir/"; then
     echo
     echo "Sync completed successfully."
 else

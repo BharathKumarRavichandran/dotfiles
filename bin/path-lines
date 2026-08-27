@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+# List PATH entries and flag duplicates or missing directories.
+
+seen=''
+remaining=${PATH-}:
+while [ -n "$remaining" ]; do
+    path=${remaining%%:*}
+    remaining=${remaining#*:}
+    [ -n "$path" ] || path=.
+    suffix=
+    identity=${path%/}
+    [ -n "$identity" ] || identity=/
+
+    case "
+$seen
+" in
+        *"
+$identity
+"*) suffix=' [duplicate]' ;;
+    esac
+
+    if [ ! -d "$path" ]; then
+        suffix="$suffix [missing]"
+    fi
+
+    printf '%s%s\n' "$path" "$suffix"
+    seen="$seen
+$identity"
+done

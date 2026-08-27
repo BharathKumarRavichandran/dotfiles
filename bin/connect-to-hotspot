@@ -1,5 +1,35 @@
 #!/bin/sh
+# Create a Wi-Fi hotspot with NetworkManager.
 
-echo "Connecting to ssid: $1..."
-nmcli dev wifi hotspot ssid "$1" password "$2"
-echo "Connected to: $1"
+if [ "$#" -gt 2 ] || [ -z "${1:-}" ]; then
+    echo "Usage: connect-to-hotspot <ssid> [password]" >&2
+    exit 2
+fi
+
+ssid=$1
+password=${2:-}
+
+if [ -z "$password" ]; then
+    if [ ! -t 0 ]; then
+        echo "connect-to-hotspot: a password is required when stdin is not a terminal" >&2
+        exit 2
+    fi
+    printf "Password: " >&2
+    stty -echo
+    trap 'stty echo' EXIT
+    trap 'exit 129' HUP
+    trap 'exit 130' INT
+    trap 'exit 143' TERM
+    IFS= read -r password
+    stty echo
+    trap - EXIT HUP INT TERM
+    printf '\n' >&2
+fi
+
+if [ "${#password}" -lt 8 ]; then
+    echo "connect-to-hotspot: password must contain at least 8 characters" >&2
+    exit 2
+fi
+
+echo "Creating hotspot: $ssid"
+nmcli dev wifi hotspot ssid "$ssid" password "$password"

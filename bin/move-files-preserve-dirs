@@ -1,4 +1,5 @@
 #!/bin/bash
+# Move files to another directory while preserving their relative paths.
 
 overwrite=false
 

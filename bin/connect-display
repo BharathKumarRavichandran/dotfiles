@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Connect an X11 display beside the embedded display.
 
 usage() {
     echo "Usage: connect-display <DISPLAY> <POSITION> [=left|right]"

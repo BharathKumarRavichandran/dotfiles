@@ -1,8 +1,5 @@
 #!/bin/bash
-#
-# battery-status
-#
-# A quick little indicator for battery status, suitable for display in your prompt.
+# Print a compact battery status indicator for use in a shell prompt.
 
 if [[ "$(uname)" == "Darwin" ]]; then
   battstat=$(pmset -g batt)

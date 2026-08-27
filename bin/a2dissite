@@ -1,25 +1,38 @@
-#!/bin/bash
-# Disable apache site
+#!/usr/bin/env bash
+# Disable an Apache virtual host by removing its enabled symlink.
 
-avail=/etc/httpd/conf/sites-enabled/$1.conf
-enabled=/etc/httpd/conf/sites-enabled
-site=$(ls /etc/httpd/conf/sites-enabled)
+set -e
 
-if [ "$#" != "1" ]; then
-	echo "Use script: n2dissite virtual_site"
-	echo -e "\nAvailable virtual hosts: \n$site"
-	exit 0
-else
-	if test -e "$avail"; then
-		sudo rm "$avail"
-	else
-		echo -e "$avail virtual host does not exist! Exiting"
-	exit 0
-	fi
-	if test -e "$enabled/$1.conf"; then
-		echo "Error!! Could not remove $avail virtual host!"
-	else
-		echo -e "Success! $avail has been removed!\nsudo systemctl restart httpd"
-	exit 0
-	fi
+enabled_dir=${APACHE_SITES_ENABLED:-/etc/httpd/conf/sites-enabled}
+
+usage() {
+    echo "Usage: a2dissite <site>" >&2
+    if [[ -d $enabled_dir ]]; then
+        echo "Enabled sites:" >&2
+        find "$enabled_dir" -maxdepth 1 \( -type f -o -type l \) -name '*.conf' -exec basename {} .conf \; | sort >&2
+    fi
+}
+
+if [[ $# -ne 1 || -z $1 ]]; then
+    usage
+    exit 2
 fi
+
+site=${1%.conf}
+if [[ -z $site || $site == */* || $site == . || $site == .. ]]; then
+    echo "a2dissite: invalid site name: $1" >&2
+    exit 2
+fi
+enabled="$enabled_dir/$site.conf"
+
+if [[ ! -e $enabled && ! -L $enabled ]]; then
+    echo "a2dissite: site is not enabled: $site" >&2
+    exit 1
+fi
+if [[ ! -L $enabled ]]; then
+    echo "a2dissite: refusing to remove non-symlink: $enabled" >&2
+    exit 1
+fi
+
+sudo rm -- "$enabled"
+echo "Disabled $site. Restart Apache to apply the change."

@@ -35,6 +35,12 @@ Platform setup: [macOS](MAC_SETUP.md) · [Linux](LINUX_SETUP.md)
 ./configure.sh --all                        # configure all discovered tools
 dotfiles-doctor                             # check the setup
 dotfiles-update                             # update shell/editor plugins
+extract archive.zip [destination]           # extract an archive without changing it
+serve [directory] [port]                    # serve on a free port from 8000–9000
+mkcd directory                              # create a directory and enter it
+trash file ...                              # move files to the system trash
+port-process port                           # show the process using a port
+path-lines                                  # inspect PATH entries and problems
 ```
 
 Setup scripts may install packages or plugins and change application or system

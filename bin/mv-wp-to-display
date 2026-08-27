@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Move an i3 workspace to an X11 display.
 
 usage() {
     echo "Usage: mv-wp-to-display <WORKSPACE> <DISPLAY>"

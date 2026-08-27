@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+# Update managed Zsh, tmux, and Neovim plugins.
 
 DOTDIR=${DOTDIR:-${0:A:h:h}}
 failures=()

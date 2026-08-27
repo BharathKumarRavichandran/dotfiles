@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+# Check that the dotfiles installation and its core dependencies work.
 
 DOTDIR=${DOTDIR:-${0:A:h:h}}
 problems=0

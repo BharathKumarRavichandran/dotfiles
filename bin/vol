@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Adjust the system output volume and display a notification.
 
 if [[ -z "$1" ]]; then
     echo "Usage: $0 <up | down | mute | unmute | toggle>"

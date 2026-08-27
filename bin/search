@@ -1,11 +1,20 @@
 #!/bin/sh
-#
 # Quick case-insensitive search in a directory for a string ($@).
-#
 set -e
 
+if [ "$#" -eq 0 ]; then
+    echo "Usage: search <pattern> [path ...]" >&2
+    exit 2
+fi
+
+pattern=$1
+shift
+if [ "$#" -eq 0 ]; then
+    set -- .
+fi
+
 if command -v rg > /dev/null 2>&1; then
-    rg -i "$@"
+    rg -i -- "$pattern" "$@"
 else
-    grep -rin "$@" .
+    grep -rin -- "$pattern" "$@"
 fi

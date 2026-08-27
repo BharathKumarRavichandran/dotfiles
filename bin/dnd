@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Enable or disable Do Not Disturb on macOS or Linux.
 
 getargs() {
   while getopts "se" opt
