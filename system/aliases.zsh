@@ -1,8 +1,6 @@
 # Aliases
 
 # General
-alias die="figlet 'Goodbye!' && poweroff"
-alias killprocess='fuser -k 3000/tcp'
 alias fucking="sudo"
 alias trx="tar xvf"
 alias vi="${EDITOR:-vim}"
@@ -10,9 +8,6 @@ alias vi="${EDITOR:-vim}"
 alias dirdu="du -h -d 1 ."
 alias mvup="find . -mindepth 2 -type f -print -exec mv -n {} . \;"
 alias delemptydirs="find . -type d -empty -delete"
-if [[ "$OSTYPE" != "darwin"* ]]; then
-    alias ports="sudo netstat -tulpn | grep LISTEN"
-fi
 
 # Utility
 alias mkdir="mkdir -p"
@@ -26,19 +21,6 @@ alias du="du -kh"
 alias sa="alias | grep -i"
 alias type="type -a"
 alias diffu="diff --unified"
-
-# Monitor and Display
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    alias brightness='xrandr --output eDP-1-1 --brightness'
-    alias minbrightness='sudo su -c "echo 1 >/sys/class/backlight/intel_backlight/brightness"'
-    alias resetdisplay="xrandr --output eDP1 --mode 1920x1080 --scale 1"
-    alias connectdisplay1="xrandr --output HDMI1 --auto --right-of eDP1"
-    alias disconnectdisplay1="xrandr --output HDMI1 --off"
-    alias connectdisplay2="xrandr --output HDMI2 --auto --left-of eDP1"
-    alias disconnectdisplay2="xrandr --output HDMI2 --off"
-    alias disconnectdisplays="xrandr --output HDMI1 --off --output HDMI2 --off\
-        --output VGA1 --off --output VGA2 --off"
-fi
 
 # Multiple directory listing aliases (eza)
 if (( $+commands[eza] )); then

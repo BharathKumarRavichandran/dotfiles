@@ -29,6 +29,33 @@ get_current_datetime()
     date +"%Y-%m-%d_%H-%M-%S"
 }
 
+killport()
+{
+    local port=${1:-3000}
+
+    if [[ "$port" != <1-65535> ]]; then
+        echo "Usage: killport [port]" >&2
+        return 2
+    fi
+
+    if [[ "$OSTYPE" == darwin* ]]; then
+        local -a pids
+        pids=(${(f)"$(lsof -tiTCP:"$port" -sTCP:LISTEN)"})
+
+        if (( ${#pids} == 0 )); then
+            echo "No process is listening on port $port"
+            return 1
+        fi
+
+        kill -- "${pids[@]}"
+    elif [[ "$OSTYPE" == linux* ]]; then
+        fuser -k "$port/tcp"
+    else
+        echo "killport is not supported on $OSTYPE" >&2
+        return 1
+    fi
+}
+
 dotfile_backup_dir()
 {
     local tool=$1
