@@ -25,6 +25,7 @@ brew "tealdeer"
 brew "xh"
 
 brew "antidote"
+brew "herdr"
 brew "starship"
 brew "tmux"
 

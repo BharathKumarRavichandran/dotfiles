@@ -10,7 +10,7 @@ source "$DOTDIR/system/functions.zsh"
 
 typeset -A profiles
 profiles[cli]='git zsh starship tmux vim nvim'
-profiles[macos]='git zsh starship tmux nvim kitty iterm2 rectangle vscode'
+profiles[macos]='git zsh starship tmux nvim kitty iterm2 herdr rectangle vscode'
 profiles[linux-desktop]='git zsh starship tmux nvim kitty i3 xserver picom polybar rofi dunst vscode'
 
 available_tools=()

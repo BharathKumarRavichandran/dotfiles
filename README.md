@@ -16,7 +16,7 @@ Platform setup: [macOS](MAC_SETUP.md) · [Linux](LINUX_SETUP.md)
 | Profile | Target | Tools |
 | --- | --- | --- |
 | `cli` | VPS/headless | Git, Zsh, Starship, Tmux, Vim, Neovim |
-| `macos` | macOS | Git, Zsh, Starship, Tmux, Neovim, Kitty, iTerm2, Rectangle, VS Code |
+| `macos` | macOS | Git, Zsh, Starship, Tmux, Neovim, Kitty, iTerm2, Herdr, Rectangle, VS Code |
 | `linux-desktop` | Linux X11 | Git, Zsh, Starship, Tmux, Neovim, Kitty, i3, Xserver, Picom, Polybar, Rofi, Dunst, VS Code |
 
 ```sh
