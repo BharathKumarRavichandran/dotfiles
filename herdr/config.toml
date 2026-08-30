@@ -1,7 +1,37 @@
 onboarding = false
 
 [keys]
-prefix = "ctrl+q"
+prefix = "ctrl+a"
+
+# Mirror tmux bindings where Herdr has an equivalent concept.
+detach = "prefix+d"
+workspace_picker = "prefix+ctrl+w"
+rename_workspace = "prefix+."
+close_workspace = "prefix+shift+x"
+
+new_tab = "prefix+c"
+rename_tab = "prefix+comma"
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
+move_tab_previous = "prefix+<"
+move_tab_next = "prefix+>"
+switch_tab = "prefix+1..9"
+close_tab = "prefix+ampersand"
+
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+cycle_pane_next = "prefix+tab"
+cycle_pane_previous = "prefix+shift+tab"
+split_vertical = "prefix+|"
+split_horizontal = "prefix+minus"
+close_pane = "prefix+x"
+zoom = "prefix+z"
+resize_pane_left = "prefix+shift+h"
+resize_pane_down = "prefix+shift+j"
+resize_pane_up = "prefix+shift+k"
+resize_pane_right = "prefix+shift+l"
 
 [ui]
 agent_panel_sort = "spaces"
