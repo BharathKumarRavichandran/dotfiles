@@ -18,6 +18,7 @@ Platform setup: [macOS](MAC_SETUP.md) · [Linux](LINUX_SETUP.md)
 | `cli` | VPS/headless | Git, Zsh, Starship, Tmux, Vim, Neovim |
 | `macos` | macOS | Git, Zsh, Starship, Tmux, Neovim, Kitty, iTerm2, Herdr, Rectangle, VS Code |
 | `linux-desktop` | Linux X11 | Git, Zsh, Starship, Tmux, Neovim, Kitty, i3, Xserver, Picom, Polybar, Rofi, Dunst, VS Code |
+| `ai-tools` | Optional AI tools | Claude Code, Codex, Grok Build, OpenCode, Herdr |
 
 ```sh
 ./configure.sh --profile cli
@@ -53,6 +54,7 @@ Homebrew, apt, or pacman:
 ./install.sh --profile cli
 ./install.sh --profile macos
 ./install.sh --profile linux-desktop
+./install.sh --profile ai-tools
 ```
 
 Add `--all` after a profile to skip its picker.
@@ -62,6 +64,7 @@ To open only one lower-level package group instead of a complete machine profile
 ```sh
 ./install.sh --group cli
 ./install.sh --group desktop
+./install.sh --group ai-tools
 ```
 
 Profiles and groups open multi-select package pickers. Package names can also be

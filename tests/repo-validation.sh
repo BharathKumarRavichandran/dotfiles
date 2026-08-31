@@ -13,6 +13,9 @@ done
 HOME="$test_home" zsh "$repo/install.sh" --dry-run git >/dev/null
 HOME="$test_home" zsh "$repo/install.sh" --dry-run antidote >/dev/null
 HOME="$test_home" zsh "$repo/install.sh" --dry-run --profile cli --all >/dev/null
+if (( $+commands[brew] )); then
+    HOME="$test_home" zsh "$repo/install.sh" --dry-run --profile ai-tools --all >/dev/null
+fi
 if [[ $OSTYPE == darwin* ]]; then
     HOME="$test_home" zsh "$repo/install.sh" --dry-run herdr >/dev/null
     HOME="$test_home" zsh "$repo/install.sh" --dry-run --profile macos --all >/dev/null

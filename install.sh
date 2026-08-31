@@ -10,8 +10,8 @@ source "$DOTDIR/system/functions.zsh"
 source "$DOTDIR/packages/install.sh"
 
 usage() {
-    echo "Usage: $program [--dry-run] --profile <cli|macos|linux-desktop> [--all]"
-    echo "       $program [--dry-run] --group <cli|desktop>"
+    echo "Usage: $program [--dry-run] --profile <cli|macos|linux-desktop|ai-tools> [--all]"
+    echo "       $program [--dry-run] --group <cli|desktop|ai-tools>"
     echo "       $program [--dry-run] <package>..."
 }
 
@@ -51,7 +51,7 @@ install_picker() {
     if [[ $group == cli ]]; then
         install_cli "${selected[@]}"
     else
-        install_package_group desktop "${selected[@]}"
+        install_package_group "$group" "${selected[@]}"
     fi
 }
 
@@ -113,6 +113,9 @@ if [[ $1 == --profile ]]; then
             [[ $OSTYPE == linux* ]] || { echo "The linux-desktop profile requires Linux." >&2; exit 1; }
             groups=(cli desktop)
             ;;
+        ai-tools)
+            groups=(ai-tools)
+            ;;
         *)
             echo "Unknown profile: $profile" >&2
             exit 1
@@ -124,7 +127,7 @@ if [[ $1 == --profile ]]; then
             if [[ $group == cli ]]; then
                 install_cli
             else
-                install_package_group desktop
+                install_package_group "$group"
             fi
         else
             install_picker "$group"
@@ -135,7 +138,7 @@ fi
 
 if [[ $1 == --group ]]; then
     (( $# == 2 )) || { usage >&2; exit 1; }
-    [[ $2 == cli || $2 == desktop ]] || { echo "Unknown package group: $2" >&2; exit 1; }
+    [[ $2 == cli || $2 == desktop || $2 == ai-tools ]] || { echo "Unknown package group: $2" >&2; exit 1; }
     install_picker "$2"
     exit 0
 fi
