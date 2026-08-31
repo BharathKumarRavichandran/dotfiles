@@ -9,9 +9,9 @@ program=${0:t}
 source "$DOTDIR/system/functions.zsh"
 
 typeset -A profiles
-profiles[cli]='git zsh starship tmux vim nvim'
-profiles[macos]='git zsh starship tmux nvim kitty iterm2 herdr rectangle vscode'
-profiles[linux-desktop]='git zsh starship tmux nvim kitty i3 xserver picom polybar rofi dunst vscode'
+profiles[cli]='git zsh starship tmux vim nvim yazi'
+profiles[macos]='git zsh starship tmux nvim yazi kitty iterm2 herdr rectangle vscode'
+profiles[linux-desktop]='git zsh starship tmux nvim yazi kitty i3 xserver picom polybar rofi dunst vscode'
 
 available_tools=()
 for setup in "$DOTDIR"/*/setup.sh "$DOTDIR"/.githooks/setup.sh(N); do

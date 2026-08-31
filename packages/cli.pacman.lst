@@ -15,5 +15,6 @@ shellcheck
 starship
 tmux
 vim
+yazi
 zoxide
 zsh

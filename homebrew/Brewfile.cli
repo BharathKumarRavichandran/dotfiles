@@ -23,6 +23,7 @@ brew "dust"
 brew "figlet"
 brew "tealdeer"
 brew "xh"
+brew "yazi"
 
 brew "antidote"
 brew "herdr"

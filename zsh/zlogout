@@ -2,7 +2,7 @@
 # Executes commands at logout.
 #
 # Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   Bharath Kumar Ravichandran
 #
 
 # Execute code only if STDERR is bound to a TTY.

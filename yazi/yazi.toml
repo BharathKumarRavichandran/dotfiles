@@ -1,0 +1,25 @@
+[mgr]
+show_hidden = true
+sort_by = "natural"
+sort_dir_first = true
+
+[preview]
+wrap = "yes"
+
+[[plugin.prepend_previewers]]
+mime = "text/*"
+run = 'faster-piper -- bat --style=numbers --color=always --decorations=always --paging=never --wrap=character --terminal-width="$w" "$1"'
+
+[[plugin.prepend_previewers]]
+mime = "application/{mbox,javascript,wine-extension-ini,json,ndjson}"
+run = 'faster-piper -- bat --style=numbers --color=always --decorations=always --paging=never --wrap=character --terminal-width="$w" "$1"'
+
+[[plugin.prepend_fetchers]]
+url = "*"
+run = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url = "*/"
+run = "git"
+group = "git"

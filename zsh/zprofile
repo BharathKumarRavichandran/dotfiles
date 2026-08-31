@@ -2,7 +2,7 @@
 # Executes commands at login pre-zshrc.
 #
 # Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   Bharath Kumar Ravichandran
 #
 
 #
@@ -13,18 +13,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER='open'
 fi
 
-#
-# Editors
-#
-
-if (( $+commands[nvim] )); then
-  export EDITOR='nvim'
-  export VISUAL='nvim'
-else
-  export EDITOR='vim'
-  export VISUAL='vim'
-fi
-export PAGER='less'
 
 #
 # Language
@@ -51,6 +39,26 @@ path=(
   /usr/local/{bin,sbin}
   $path
 )
+
+# Add package-manager paths when they exist.
+[[ -d /opt/homebrew/bin ]] && path=(/opt/homebrew/bin $path)
+[[ -d /opt/homebrew/sbin ]] && path=(/opt/homebrew/sbin $path)
+[[ -d /home/linuxbrew/.linuxbrew/bin ]] && path=(/home/linuxbrew/.linuxbrew/bin $path)
+[[ -d /home/linuxbrew/.linuxbrew/sbin ]] && path=(/home/linuxbrew/.linuxbrew/sbin $path)
+
+#
+# Editor
+#
+
+# Select the best editor.
+if (( $+commands[nvim] )); then
+  export EDITOR='nvim'
+  export VISUAL='nvim'
+else
+  export EDITOR='vim'
+  export VISUAL='vim'
+fi
+export PAGER='less'
 
 #
 # Less

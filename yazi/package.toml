@@ -1,0 +1,39 @@
+[[plugin.deps]]
+use = "imsi32/yatline"
+rev = "c5d4b48"
+hash = "e6e98d12b1648d1894c2b560d85eeaa7"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "c591a36"
+hash = "f281261ff04ad7ec867c3f802a50835f"
+
+[[plugin.deps]]
+use = "alberti42/faster-piper"
+rev = "bb90261"
+hash = "12b5e342d54db42b5b023faa1a11f28e"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:term-cwd"
+rev = "c591a36"
+hash = "ea4d7108bc2c02738ab652064095905f"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "c591a36"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "c591a36"
+hash = "5bb0bfab901d3601c370eafdd66edd31"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "c591a36"
+hash = "d6f7351ea25a43c9b5f4315fa1e23935"
+
+[[flavor.deps]]
+use = "bennyyip/gruvbox-dark"
+rev = "619fdc5"
+hash = "d4c7003ec6dc4efd5d3a050d5c2f2575"

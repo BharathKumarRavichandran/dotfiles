@@ -1,7 +1,7 @@
 ######################## BAT CONFIG #########################
 
-# Set the theme to "TwoDark"
---theme="OneHalfDark"
+# Use the terminal's ANSI palette.
+--theme="ansi"
 
 # Use italic text on the terminal (not supported on all terminals)
 --italic-text=always

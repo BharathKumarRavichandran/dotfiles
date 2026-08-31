@@ -7,7 +7,6 @@ mkcd()
     mkdir -p -- "$1" && cd -- "$1"
 }
 
-# Backward-compatible shorthand for the standalone archive extractor.
 ex()
 {
     extract "$@"

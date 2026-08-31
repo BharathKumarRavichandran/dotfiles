@@ -2,7 +2,7 @@
 # Defines environment variables.
 #
 # Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   Bharath Kumar Ravichandran
 #
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
