@@ -8,7 +8,7 @@ require("full-border"):setup({
 	type = ui.Border.ROUNDED,
 })
 
--- Lualine-style header and status bars using the Gruvbox Dark palette.
+-- Lualine-style header and status bars using the Flexoki Dark palette.
 require("yatline"):setup({
 	section_separator = { open = "", close = "" },
 	part_separator = { open = "", close = "" },
@@ -17,31 +17,31 @@ require("yatline"):setup({
 	padding = { inner = 1, outer = 1 },
 
 	style_a = {
-		fg = "#282828",
-		bg = "#83A598",
+		fg = "#100F0F",
+		bg = "#3AA99F",
 		bg_mode = {
-			normal = "#83A598",
-			select = "#D3869B",
-			un_set = "#FB4934",
+			normal = "#3AA99F",
+			select = "#CE5D97",
+			un_set = "#D14D41",
 		},
 	},
-	style_b = { fg = "#EBDBB2", bg = "#3C3836" },
-	style_c = { fg = "#EBDBB2", bg = "#282828" },
+	style_b = { fg = "#CECDC3", bg = "#282726" },
+	style_c = { fg = "#CECDC3", bg = "#100F0F" },
 
-	permissions_t_fg = "#B8BB26",
-	permissions_r_fg = "#FABD2F",
-	permissions_w_fg = "#FB4934",
-	permissions_x_fg = "#83A598",
-	permissions_s_fg = "#D3869B",
+	permissions_t_fg = "#879A39",
+	permissions_r_fg = "#D0A215",
+	permissions_w_fg = "#D14D41",
+	permissions_x_fg = "#4385BE",
+	permissions_s_fg = "#CE5D97",
 
-	selected = { icon = "󰻭", fg = "#FABD2F" },
-	copied = { icon = "", fg = "#B8BB26" },
-	cut = { icon = "", fg = "#FB4934" },
-	files = { icon = "", fg = "#83A598" },
-	filtereds = { icon = "", fg = "#D3869B" },
-	total = { icon = "󰮍", fg = "#FABD2F" },
-	success = { icon = "", fg = "#B8BB26" },
-	failed = { icon = "", fg = "#FB4934" },
+	selected = { icon = "󰻭", fg = "#D0A215" },
+	copied = { icon = "", fg = "#879A39" },
+	cut = { icon = "", fg = "#D14D41" },
+	files = { icon = "", fg = "#4385BE" },
+	filtereds = { icon = "", fg = "#CE5D97" },
+	total = { icon = "󰮍", fg = "#D0A215" },
+	success = { icon = "", fg = "#879A39" },
+	failed = { icon = "", fg = "#D14D41" },
 
 	tab_width = 20,
 	show_background = true,

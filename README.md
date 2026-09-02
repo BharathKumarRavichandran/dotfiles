@@ -65,6 +65,7 @@ To open only one lower-level package group instead of a complete machine profile
 ./install.sh --group cli
 ./install.sh --group desktop
 ./install.sh --group ai-tools
+./install.sh --group optional # Homebrew-only, opt-in tools
 ```
 
 Profiles and groups open multi-select package pickers. Package names can also be
@@ -74,6 +75,7 @@ package manager:
 ```sh
 ./install.sh git zsh neovim fzf
 ./install.sh kitty
+./install.sh lfk
 ```
 
 Use `./bootstrap.sh <profile>` to install the matching packages and configure the

@@ -27,7 +27,7 @@ list_package_group() {
     resolve_package_manifest "$group" || return 1
 
     if [[ $PACKAGE_MANAGER == Homebrew ]]; then
-        sed -nE 's/^(brew|cask) "([^"]+)".*/\2/p' "$PACKAGE_MANIFEST"
+        sed -nE 's/^(brew|cask) "([^"]+)".*/\2/p' "$PACKAGE_MANIFEST" | sed 's|.*/||'
     else
         sed '/^[[:space:]]*\(#\|$\)/d' "$PACKAGE_MANIFEST"
         if [[ $group == cli ]]; then
@@ -56,7 +56,7 @@ select_package_group() {
 install_package_group() {
     local group=$1
     shift
-    local package
+    local package kind entry matched
     local -a packages requested available missing formulae casks
 
     requested=("$@")
@@ -64,11 +64,18 @@ install_package_group() {
 
     if [[ $PACKAGE_MANAGER == Homebrew ]]; then
         for package in $requested; do
-            if grep -qF "brew \"$package\"" "$PACKAGE_MANIFEST"; then
-                formulae+=("$package")
-            elif grep -qF "cask \"$package\"" "$PACKAGE_MANIFEST"; then
-                casks+=("$package")
-            else
+            matched=0
+            while IFS=$'\t' read -r kind entry; do
+                [[ ${entry:t} == $package ]] || continue
+                if [[ $kind == brew ]]; then
+                    formulae+=("$entry")
+                else
+                    casks+=("$entry")
+                fi
+                matched=1
+                break
+            done < <(sed -nE 's/^(brew|cask) "([^"]+)".*/\1\	\2/p' "$PACKAGE_MANIFEST")
+            if (( ! matched )); then
                 echo "Package '$package' is not in $PACKAGE_MANIFEST" >&2
                 return 1
             fi

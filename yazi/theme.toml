@@ -1,3 +1,7 @@
 [flavor]
-dark = "gruvbox-dark"
-light = "gruvbox-dark"
+dark = "flexoki-dark"
+light = "flexoki-dark"
+
+# Avoid a stale black rectangle when iTerm2 clears inline image previews.
+[app]
+overall = {}

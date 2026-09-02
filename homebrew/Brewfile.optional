@@ -1,0 +1,3 @@
+tap "janosmiko/tap"
+
+brew "janosmiko/tap/lfk"

@@ -21,6 +21,7 @@ alias du="du -kh"
 alias sa="alias | grep -i"
 alias type="type -a"
 alias diffu="diff --unified"
+(( $+commands[bat] )) && alias cat='bat --plain'
 
 # Multiple directory listing aliases (eza)
 if (( $+commands[eza] )); then

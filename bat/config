@@ -1,7 +1,7 @@
 ######################## BAT CONFIG #########################
 
-# Use the terminal's ANSI palette.
---theme="ansi"
+# Use Ayu Dark syntax highlighting.
+--theme="ayu-dark"
 
 # Use italic text on the terminal (not supported on all terminals)
 --italic-text=always

@@ -11,7 +11,7 @@ source "$DOTDIR/packages/install.sh"
 
 usage() {
     echo "Usage: $program [--dry-run] --profile <cli|macos|linux-desktop|ai-tools> [--all]"
-    echo "       $program [--dry-run] --group <cli|desktop|ai-tools>"
+    echo "       $program [--dry-run] --group <cli|desktop|ai-tools|optional>"
     echo "       $program [--dry-run] <package>..."
 }
 
@@ -56,22 +56,29 @@ install_picker() {
 }
 
 install_requested() {
-    local package in_cli in_desktop
-    local -a cli_packages desktop_packages cli_requested desktop_requested
+    local package in_cli in_desktop in_optional
+    local -a cli_packages desktop_packages optional_packages
+    local -a cli_requested desktop_requested optional_requested
 
     cli_packages=("${(@f)$(list_package_group cli)}")
     desktop_packages=("${(@f)$(list_package_group desktop)}")
+    if resolve_package_manifest optional >/dev/null 2>&1; then
+        optional_packages=("${(@f)$(list_package_group optional)}")
+    fi
 
     for package in "$@"; do
         in_cli=${cli_packages[(Ie)$package]}
         in_desktop=${desktop_packages[(Ie)$package]}
-        if (( in_cli && in_desktop )); then
-            echo "Package '$package' exists in both groups; use a group picker." >&2
+        in_optional=${optional_packages[(Ie)$package]}
+        if (( (in_cli && in_desktop) || (in_cli && in_optional) || (in_desktop && in_optional) )); then
+            echo "Package '$package' exists in multiple groups; use a group picker." >&2
             return 1
         elif (( in_cli )); then
             cli_requested+=("$package")
         elif (( in_desktop )); then
             desktop_requested+=("$package")
+        elif (( in_optional )); then
+            optional_requested+=("$package")
         else
             echo "Unknown package for this platform: $package" >&2
             return 1
@@ -83,6 +90,9 @@ install_requested() {
     fi
     if (( ${#desktop_requested} )); then
         install_package_group desktop "${desktop_requested[@]}"
+    fi
+    if (( ${#optional_requested} )); then
+        install_package_group optional "${optional_requested[@]}"
     fi
 }
 
@@ -138,7 +148,7 @@ fi
 
 if [[ $1 == --group ]]; then
     (( $# == 2 )) || { usage >&2; exit 1; }
-    [[ $2 == cli || $2 == desktop || $2 == ai-tools ]] || { echo "Unknown package group: $2" >&2; exit 1; }
+    [[ $2 == cli || $2 == desktop || $2 == ai-tools || $2 == optional ]] || { echo "Unknown package group: $2" >&2; exit 1; }
     install_picker "$2"
     exit 0
 fi
