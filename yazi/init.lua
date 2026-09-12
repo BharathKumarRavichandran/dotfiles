@@ -9,7 +9,9 @@ require("full-border"):setup({
 })
 
 -- Lualine-style header and status bars using the Flexoki Dark palette.
-require("yatline"):setup({
+local yatline = require("yatline")
+
+yatline:setup({
 	section_separator = { open = "", close = "" },
 	part_separator = { open = "", close = "" },
 	inverse_separator = { open = "", close = "" },
@@ -77,3 +79,61 @@ require("yatline"):setup({
 		},
 	},
 })
+
+-- Give each tab enough path context to distinguish common directory names.
+Yatline.line.get.tabs = function(_, side)
+	local tabs = {}
+	local first, last, step = 1, #cx.tabs, 1
+
+	if side == "right" then
+		first, last, step = last, first, -1
+	end
+
+	for i = first, last, step do
+		local item = cx.tabs[i]
+		local cwd = item.current.cwd
+		local current = cwd.name or item.name
+		local parent = cwd.parent and cwd.parent.name
+		local name = parent and string.format("%s/%s", parent, current) or current
+		local text = ui.truncate(string.format("%d %s", i, name), { max = Yatline.config.tab_width })
+		local style = i == cx.tabs.idx and Yatline.config.style_a or Yatline.config.style_c
+		local bg = style.bg
+
+		if i == cx.tabs.idx then
+			bg = item.mode.is_select and style.bg_mode.select
+				or item.mode.is_unset and style.bg_mode.un_set
+				or style.bg_mode.normal
+		end
+
+		local outer = string.rep(" ", Yatline.config.padding.outer)
+		local inner = string.rep(" ", Yatline.config.padding.inner)
+		local padded = side == "right" and inner .. text .. outer or outer .. text .. inner
+		local tab = ui.Span(padded):fg(style.fg):bg(bg)
+
+		if i == cx.tabs.idx then
+			if side ~= "right" and i > 1 then
+				tabs[#tabs + 1] = ui.Span(Yatline.config.section_separator.close)
+					:fg(Yatline.config.style_c.bg)
+					:bg(bg)
+			end
+
+			local separator = ui.Span(
+				side == "right" and Yatline.config.section_separator.open
+					or Yatline.config.section_separator.close
+		):fg(bg):bg(Yatline.config.style_c.bg)
+
+			tabs[#tabs + 1] = side == "right" and ui.Line({ separator, tab:bold() })
+				or ui.Line({ tab:bold(), separator })
+		else
+			tabs[#tabs + 1] = tab
+
+			if side ~= "right" and i < #cx.tabs and i + 1 ~= cx.tabs.idx then
+				tabs[#tabs + 1] = ui.Span(Yatline.config.part_separator.close)
+					:fg(Yatline.config.style_c.fg)
+					:bg(Yatline.config.style_c.bg)
+			end
+		end
+	end
+
+	return ui.Line(tabs)
+end
